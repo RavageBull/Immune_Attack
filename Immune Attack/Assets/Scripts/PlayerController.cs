@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("left shift") && canDash)
@@ -33,7 +32,10 @@ public class PlayerController : MonoBehaviour
             StartCoroutine("Dash");
             StartCoroutine("DashCooldown");
         }
+    }
 
+    void FixedUpdate()
+    {
         if (isDashing)
         {
             controller.Move(dashDir * dashSpeed * Time.deltaTime);

@@ -21,10 +21,10 @@ MonoBehaviour:
     y: 30
     width: 2560
     height: 1308
-  m_MinSize: {x: 581, y: 472}
-  m_MaxSize: {x: 14000, y: 14022}
+  m_MinSize: {x: 581, y: 450}
+  m_MaxSize: {x: 14002, y: 14022}
   vertical: 0
-  controlID: 1372
+  controlID: 2164
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -127,10 +127,10 @@ MonoBehaviour:
     y: 0
     width: 1890
     height: 1308
-  m_MinSize: {x: 306, y: 472}
+  m_MinSize: {x: 304, y: 450}
   m_MaxSize: {x: 10000, y: 14022}
   vertical: 1
-  controlID: 1373
+  controlID: 2165
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -152,10 +152,10 @@ MonoBehaviour:
     y: 0
     width: 1890
     height: 926
-  m_MinSize: {x: 306, y: 222}
-  m_MaxSize: {x: 8006, y: 4022}
+  m_MinSize: {x: 304, y: 200}
+  m_MaxSize: {x: 8004, y: 4022}
   vertical: 0
-  controlID: 1374
+  controlID: 2166
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -175,8 +175,8 @@ MonoBehaviour:
     y: 0
     width: 360
     height: 926
-  m_MinSize: {x: 202, y: 222}
-  m_MaxSize: {x: 4002, y: 4022}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -303,9 +303,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.067219, y: 6.497503, z: 7.697791}
+    m_Target: {x: -21.522404, y: 10.160099, z: -0.3128575}
     speed: 2
-    m_Value: {x: 5.067219, y: 6.497503, z: 7.697791}
+    m_Value: {x: -21.522404, y: 10.160099, z: -0.3128575}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -334,13 +334,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.02621619, y: 0.9682666, z: -0.22339007, w: 0.11102446}
+    m_Target: {x: -0.10676008, y: -0.85840315, z: 0.18966657, w: -0.46519095}
     speed: 2
-    m_Value: {x: 0.0262102, y: 0.9680454, z: -0.22333904, w: 0.11099909}
+    m_Value: {x: -0.106726475, y: -0.85813296, z: 0.18960688, w: -0.46504453}
   m_Size:
-    m_Target: 67.39605
+    m_Target: 30.679956
     speed: 2
-    m_Value: 67.39605
+    m_Value: 30.679956
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -648,7 +648,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 16}
+      m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 12644
+  m_LastSelectedObjectID: -2382
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -734,8 +734,8 @@ MonoBehaviour:
     y: 0
     width: 670
     height: 1308
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 72}
+  m_MaxSize: {x: 4002, y: 4022}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
