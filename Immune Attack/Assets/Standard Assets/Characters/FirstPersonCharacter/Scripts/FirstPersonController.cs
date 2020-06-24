@@ -44,8 +44,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-        [SerializeField] int jumpCount;
-        [SerializeField] int jumpMax;
+        int jumpCount;
+        [SerializeField] int jumpMax; //maximum number of jumps
+
+        float jumpTimer;
+        float jumpTimerCap;
 
         // Use this for initialization
         private void Start()
@@ -62,6 +65,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
 
             jumpMax = 2;
+
+            jumpTimerCap = 0.2f;
         }
 
 
@@ -75,6 +80,26 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
 
+            //David: Currently the jump bool turns true if jump is pressed, and if the player is grounded while the bool
+            //is true, the player will jump. This means that if in the air, the jump button is pressed, the jump bool will remain true
+            //until the player lands and the player will immediately jump again.
+            //I've made it so there's a short timer that starts when the jump button is pressed so that the jump bool will turn back to false
+            //after a short amount of time so that the jump isn't buffered for a long time.
+
+            if (CrossPlatformInputManager.GetButtonDown("Jump"))
+            {
+                jumpTimer = jumpTimerCap;
+            }
+
+            if (jumpTimer > 0)
+            {
+                jumpTimer = jumpTimer - Time.deltaTime;
+            }
+            else
+            {
+                m_Jump = false;
+            }
+
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
                 StartCoroutine(m_JumpBob.DoBobCycle());
@@ -82,7 +107,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
 
-                jumpCount = 0;
+                jumpCount = 0; //changes the jump count back to 0 after landing
             }
             if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
@@ -136,7 +161,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jumping = true;
                 jumpCount++;
 
-                //if the player is already off the ground, the jump is counted as a second/double jump;
+                //if the player is already off the ground and jumps for the first time, the jump is counted as a second/double jump;
                 if (jumpCount == 1 && !m_CharacterController.isGrounded)
                 {
                     jumpCount++;
