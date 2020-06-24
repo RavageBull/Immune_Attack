@@ -6,26 +6,32 @@ public class PlayerController : MonoBehaviour
 {
     CharacterController controller;
 
-    public bool isDashing;
+    bool isDashing;
+    bool canDash;
     Vector3 dashDir;
     float dashSpeed;
+    float dashCooldown;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         dashSpeed = 70f;
+        dashCooldown = 2f;
+        canDash = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("left shift") && !isDashing)
+        if (Input.GetKeyDown("left shift") && canDash)
         {
             isDashing = true;
+            canDash = false;
             dashDir = new Vector3(controller.velocity.x, 0, controller.velocity.z);
             dashDir = dashDir.normalized;
             StartCoroutine("Dash");
+            StartCoroutine("DashCooldown");
         }
 
         if (isDashing)
@@ -38,5 +44,11 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         isDashing = false;
+    }
+
+    IEnumerator DashCooldown()
+    {
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }

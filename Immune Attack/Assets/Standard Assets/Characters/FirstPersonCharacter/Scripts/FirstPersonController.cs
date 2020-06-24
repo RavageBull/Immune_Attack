@@ -44,9 +44,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-        /*public bool isDashing;
-        Vector3 dashDir;
-        float dashSpeed;*/
+        [SerializeField] int jumpCount;
+        [SerializeField] int jumpMax;
 
         // Use this for initialization
         private void Start()
@@ -62,7 +61,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 
-            //dashSpeed = 1f;
+            jumpMax = 2;
         }
 
 
@@ -82,36 +81,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 PlayLandingSound();
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
+
+                jumpCount = 0;
             }
             if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
                 m_MoveDir.y = 0f;
             }
 
-            //***
-            /*if (Input.GetKeyDown("left shift") && !isDashing)
-            {
-                dashDir = new Vector3(m_MoveDir.x, 0, m_MoveDir.z);
-                isDashing = true;
-                StartCoroutine(Dash());
-                
-            }
-
-            if (isDashing)
-            {
-                m_CharacterController.Move(dashDir * dashSpeed * Time.deltaTime);
-            }*/
-            //***
-
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
         }
-
-        /*IEnumerator Dash()
-        {
-            yield return new WaitForSeconds(0.5f);
-            isDashing = false;
-            Debug.Log("TRIGGERED");
-        }*/
 
 
         private void PlayLandingSound()
@@ -138,23 +117,32 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
 
+            
 
             if (m_CharacterController.isGrounded)
             {
                 m_MoveDir.y = -m_StickToGroundForce;
-
-                if (m_Jump)
-                {
-                    m_MoveDir.y = m_JumpSpeed;
-                    PlayJumpSound();
-                    m_Jump = false;
-                    m_Jumping = true;
-                }
             }
             else
             {
                 m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
             }
+
+            if (m_Jump && jumpCount < jumpMax)
+            {
+                m_MoveDir.y = m_JumpSpeed;
+                PlayJumpSound();
+                m_Jump = false;
+                m_Jumping = true;
+                jumpCount++;
+
+                //if the player is already off the ground, the jump is counted as a second/double jump;
+                if (jumpCount == 1 && !m_CharacterController.isGrounded)
+                {
+                    jumpCount++;
+                }
+            }
+
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
             ProgressStepCycle(speed);
