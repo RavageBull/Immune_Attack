@@ -67,6 +67,7 @@ public class PlayerShoot : MonoBehaviour
             Debug.Log(hit.transform.name + " was hit!");
             GameObject particle = Instantiate(spark, hit.point, Quaternion.identity);
             particle.transform.LookAt(gameObject.transform);
+            particle.transform.Translate(new Vector3(0, 0, 0.5f));
             Destroy(particle, 1);
         }
 
