@@ -5,11 +5,28 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    //Stats//
+    public int HP;
+    public int ATK;
+    public float SPD;
+    
+
+    //Enemy Type//
+    public bool redAggro;
+
+
     public NavMeshAgent agent;
     public GameObject marker; //for testing purposes
     // Start is called before the first frame update
     void Start()
     {
+        if (redAggro == true)
+        {
+            HP = 50;
+            ATK = 10;
+            SPD = 10;
+        }
+
         agent = GetComponent<NavMeshAgent>();
         InvokeRepeating("Patrol", 1f, 10f); //temporary way of setting a patrol point
     }
@@ -17,7 +34,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (HP <= 0)
+        {
+            EnemyDeath();
+        }
     }
 
     void Patrol()
@@ -43,4 +63,20 @@ public class Enemy : MonoBehaviour
 
         return finalPosition;
     }
+
+    public void TakeDamage(int dmg)
+    {
+        if (HP > 0)
+        {
+            HP -= dmg;
+            Debug.Log("Enemy took " + dmg + " damage");
+        }
+        
+    }
+
+    public void EnemyDeath()
+    {
+        Destroy(gameObject,1);
+    }
+
 }

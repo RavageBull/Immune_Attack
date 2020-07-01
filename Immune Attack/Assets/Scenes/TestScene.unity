@@ -2225,7 +2225,7 @@ GameObject:
   - component: {fileID: 910524811}
   m_Layer: 9
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2315,6 +2315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e219da65ac8b89d4686aecb1deac2d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
+  ATK: 0
+  SPD: 0
+  redAggro: 1
   agent: {fileID: 0}
   marker: {fileID: 7088830583273179457, guid: fbf481d25819bea45b765a9a06c6a230, type: 3}
 --- !u!195 &910524811
@@ -2433,7 +2437,7 @@ GameObject:
   - component: {fileID: 998200190}
   m_Layer: 9
   m_Name: Enemy (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2472,6 +2476,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e219da65ac8b89d4686aecb1deac2d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
+  ATK: 0
+  SPD: 0
+  redAggro: 1
   agent: {fileID: 0}
   marker: {fileID: 7088830583273179457, guid: fbf481d25819bea45b765a9a06c6a230, type: 3}
 --- !u!65 &998200192
@@ -2547,6 +2555,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1005478105 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2045466650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1026920791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,7 +2889,7 @@ GameObject:
   - component: {fileID: 1097637497}
   m_Layer: 9
   m_Name: Enemy (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2914,6 +2928,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e219da65ac8b89d4686aecb1deac2d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
+  ATK: 0
+  SPD: 0
+  redAggro: 1
   agent: {fileID: 0}
   marker: {fileID: 7088830583273179457, guid: fbf481d25819bea45b765a9a06c6a230, type: 3}
 --- !u!65 &1097637499
@@ -4698,22 +4716,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681706906}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1719754370}
-  m_RootOrder: 1
+  m_Father: {fileID: 1005478105}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1719754365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2045466650}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1719754370 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
     type: 3}
   m_PrefabInstance: {fileID: 2045466650}
   m_PrefabAsset: {fileID: 0}
@@ -4741,10 +4753,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74523bb62461bbf43a8d703de6941ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyObject: {fileID: 0}
   bulletsMag: 30
   bulletsTotal: 300
   gunfireRate: 0.1
   fireTimer: 0
+  gunATK: 10
   gunRange: 1000
   startingshootPoint: {fileID: 1681706907}
   currentBullets: 0

@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
+    //Hit Enemy//
+    public GameObject EnemyObject;
 
     //Base Gun Stats//
     public int bulletsMag = 30;
     public int bulletsTotal = 300;
     public float gunfireRate = 0.1f;
     public float fireTimer;
+    public int gunATK = 10;
     public float gunRange = 100f;
     public Transform startingshootPoint;
     public int currentBullets;
@@ -32,7 +35,11 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown("r"))
+        {
+            Reload();
+        }
+
         if(Input.GetMouseButton(0))
         {
             if (currentBullets > 0)
@@ -69,10 +76,16 @@ public class PlayerShoot : MonoBehaviour
             particle.transform.LookAt(gameObject.transform);
             particle.transform.Translate(new Vector3(0, 0, 0.5f));
             Destroy(particle, 1);
+
+            if(hit.transform.tag == "Enemy")
+            {
+                EnemyObject = hit.collider.gameObject;
+                DealDamage();
+            }
+           
         }
 
         PlayShootSound();
-
         currentBullets--;
         fireTimer = 0.0f;
     }
@@ -81,6 +94,11 @@ public class PlayerShoot : MonoBehaviour
     {
         _AudioSource.clip = shootSound;
         _AudioSource.Play();
+    }
+
+    private void DealDamage()
+    {
+        EnemyObject.GetComponent<Enemy>().TakeDamage(gunATK);
     }
 
     private void Reload()
