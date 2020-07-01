@@ -17,6 +17,9 @@ public class PlayerShoot : MonoBehaviour
     private AudioSource _AudioSource;
     public AudioClip shootSound;
 
+    [SerializeField] GameObject spark; //temp
+    [SerializeField] Camera cam; //temp
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,9 +61,13 @@ public class PlayerShoot : MonoBehaviour
 
         RaycastHit hit;
 
+        //if (Physics.Raycast(startingshootPoint.position, startingshootPoint.transform.forward, out hit, gunRange))
         if (Physics.Raycast(startingshootPoint.position, startingshootPoint.transform.forward, out hit, gunRange))
         {
             Debug.Log(hit.transform.name + " was hit!");
+            GameObject particle = Instantiate(spark, hit.point, Quaternion.identity);
+            particle.transform.LookAt(gameObject.transform);
+            Destroy(particle, 1);
         }
 
         PlayShootSound();

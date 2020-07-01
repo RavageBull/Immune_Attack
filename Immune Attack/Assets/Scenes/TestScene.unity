@@ -4749,6 +4749,14 @@ MonoBehaviour:
   startingshootPoint: {fileID: 1681706907}
   currentBullets: 0
   shootSound: {fileID: 8300000, guid: 6d88828a7b969624fb4034e19184dd69, type: 3}
+  spark: {fileID: 2062754181803782628, guid: 485bd1f729b6015498d5667f2d54be1d, type: 3}
+  cam: {fileID: 1753905380}
+--- !u!20 &1753905380 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2045466650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1810774690
 GameObject:
   m_ObjectHideFlags: 0
