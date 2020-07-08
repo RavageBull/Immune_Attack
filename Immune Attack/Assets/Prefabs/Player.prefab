@@ -356,6 +356,7 @@ MonoBehaviour:
   startingshootPoint: {fileID: 400002}
   currentBullets: 0
   shootSound: {fileID: 8300000, guid: 6d88828a7b969624fb4034e19184dd69, type: 3}
+  bulletHole: {fileID: 1235035097298946, guid: 13a41486f54c3634fb3e501928c77d9d, type: 3}
   spark: {fileID: 2062754181803782628, guid: 485bd1f729b6015498d5667f2d54be1d, type: 3}
   cam: {fileID: 2000000}
 --- !u!1 &100002
