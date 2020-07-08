@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject marker; //for testing purposes
 
+    public delegate void EnemyDeathDelegate(GameObject enemy);
+    public static EnemyDeathDelegate EnemyDeath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +40,7 @@ public class Enemy : MonoBehaviour
     {
         if (stats.health <= 0)
         {
-            EnemyDeath();
+            Death();
         }
     }
 
@@ -75,9 +78,9 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void EnemyDeath()
+    public void Death()
     {
-        Destroy(gameObject,1);
+        EnemyDeath(gameObject);
     }
 
 }
