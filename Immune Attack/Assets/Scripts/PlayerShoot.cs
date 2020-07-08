@@ -20,6 +20,7 @@ public class PlayerShoot : MonoBehaviour
     private AudioSource _AudioSource;
     public AudioClip shootSound;
 
+    public GameObject bulletHole;
     [SerializeField] GameObject spark; //temp
     [SerializeField] Camera cam; //temp
 
@@ -72,12 +73,22 @@ public class PlayerShoot : MonoBehaviour
         if (Physics.Raycast(startingshootPoint.position, startingshootPoint.transform.forward, out hit, gunRange))
         {
             Debug.Log(hit.transform.name + " was hit!");
+
             GameObject particle = Instantiate(spark, hit.point, Quaternion.identity);
-            particle.transform.LookAt(gameObject.transform);
-            particle.transform.Translate(new Vector3(0, 0, 0.5f));
             Destroy(particle, 1);
 
-            if(hit.transform.tag == "Enemy")
+            if (hit.transform.tag != "Enemy")
+            {
+                GameObject hitObject = Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                Destroy(hitObject, 2f);
+
+            }
+
+            particle.transform.LookAt(gameObject.transform);
+            particle.transform.Translate(new Vector3(0, 0, 0.5f));
+
+
+            if (hit.transform.tag == "Enemy")
             {
                 EnemyObject = hit.collider.gameObject;
                 DealDamage();
