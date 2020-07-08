@@ -5,11 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    //Stats//
-    public int HP;
-    public int ATK;
-    public float SPD;
-    
+    public Stats stats;
 
     //Enemy Type//
     public bool redAggro;
@@ -17,14 +13,19 @@ public class Enemy : MonoBehaviour
 
     public NavMeshAgent agent;
     public GameObject marker; //for testing purposes
+
     // Start is called before the first frame update
     void Start()
     {
+        stats = GetComponent<Stats>();
+
         if (redAggro == true)
         {
-            HP = 50;
-            ATK = 10;
-            SPD = 10;
+            stats.health = 50;
+            stats.damage = 10;
+            stats.moveSpeed = 10;   //this does nothing at the moment as enemy is moved via navmesh agent
+                                    //will have to adjust the speed in the navmesh agent component
+                                    //can be done at a later date
         }
 
         agent = GetComponent<NavMeshAgent>();
@@ -34,7 +35,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (HP <= 0)
+        if (stats.health <= 0)
         {
             EnemyDeath();
         }
@@ -66,9 +67,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        if (HP > 0)
+        if (stats.health > 0)
         {
-            HP -= dmg;
+            stats.health -= dmg;
             Debug.Log("Enemy took " + dmg + " damage");
         }
         
