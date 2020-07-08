@@ -82,6 +82,11 @@ public class PlayerShoot : MonoBehaviour
                 EnemyObject = hit.collider.gameObject;
                 DealDamage();
             }
+
+            if (hit.collider.gameObject.GetComponent<Destructible>())
+            {
+                hit.collider.gameObject.GetComponent<Destructible>().TakeDamage();
+            }
            
         }
 
