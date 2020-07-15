@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 3568043773501244101}
   - component: {fileID: 6895665812379338620}
   - component: {fileID: 3056719063939649315}
-  - component: {fileID: 8483274378556143669}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -211,7 +210,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -360,22 +359,6 @@ MonoBehaviour:
   bulletHole: {fileID: 1235035097298946, guid: 13a41486f54c3634fb3e501928c77d9d, type: 3}
   spark: {fileID: 2062754181803782628, guid: 485bd1f729b6015498d5667f2d54be1d, type: 3}
   cam: {fileID: 2000000}
---- !u!208 &8483274378556143669
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 2.5, y: 2.5, z: 2.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
