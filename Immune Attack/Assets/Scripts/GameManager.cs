@@ -9,16 +9,18 @@ public class GameManager : MonoBehaviour
 
     public List<int> roomList;
 
-    GameObject player;
+    public GameObject player;
 
     private void OnEnable()
     {
         Portal.EnterPortal += NextScene;
+        SceneManager.sceneLoaded += Check;
     }
 
     private void OnDisable()
     {
         Portal.EnterPortal -= NextScene;
+        SceneManager.sceneLoaded -= Check;
     }
 
     void Awake()
@@ -31,11 +33,16 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    void Check(Scene scene, LoadSceneMode mode)
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void NextScene()
     {
         int sceneIndex;
 
-        sceneIndex = Random.Range(1, SceneManager.sceneCountInBuildSettings);
+        sceneIndex = Random.Range(1, SceneManager.sceneCountInBuildSettings); //randomly searches for next room. temporary.
 
         SceneManager.LoadScene(sceneIndex);
     }

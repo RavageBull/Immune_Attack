@@ -5,7 +5,15 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Melee,
+        Ranged,
+    }
+
     public Stats stats;
+
+    public EnemyType enemyType;
 
     //Enemy Type//
     public bool redAggro;
@@ -30,23 +38,57 @@ public class Enemy : MonoBehaviour
                                     //will have to adjust the speed in the navmesh agent component
                                     //can be done at a later date
         }
-
         agent = GetComponent<NavMeshAgent>();
-        InvokeRepeating("Patrol", 1f, 10f); //temporary way of setting a patrol point
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (stats.health <= 0)
+        if (stats.health <= 0) //this can be better. preferably not in update.
         {
             Death();
         }
+
+        switch (enemyType)
+        {
+            case EnemyType.Melee:
+                WalkToPlayer();
+                break;
+            case EnemyType.Ranged:
+                break;
+        }
+
+        if (Vector3.Distance(gameObject.transform.position, GameManager.manager.player.transform.position) < 10f
+            && enemyType == EnemyType.Ranged)
+        {
+            Vector3 newPos;
+            newPos = transform.position;
+            newPos += transform.position - GameManager.manager.player.transform.position;
+            /*int offset = 2;
+            newPos *= offset;*/
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(newPos, out hit, 20f, 1))
+            {
+                newPos = hit.position;
+            }
+
+            agent.SetDestination(newPos);
+            
+            /*GameObject obj = Instantiate(marker, newPos, Quaternion.identity);
+            Destroy(obj, 2f);*/
+        }
     }
 
-    void Patrol()
+    void WalkToPlayer()
     {
-        agent.SetDestination(RandomNavmeshLocation(50f));
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(GameManager.manager.player.transform.position, out hit, 10f, 1))
+        {
+            finalPosition = hit.position;
+        }
+        agent.SetDestination(finalPosition);
     }
 
     //returns a random navmesh location around the object
