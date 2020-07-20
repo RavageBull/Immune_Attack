@@ -19,6 +19,10 @@ public class HeartAttacks : MonoBehaviour
     public float angle;
     public float startAngle;
 
+    [SerializeField]
+    public GameObject player1;
+    public int burstAmount;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,19 +37,24 @@ public class HeartAttacks : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
-            int height = Random.Range(1,2);
+            int height = Random.Range(1,4);
 
             if (height == 1)
             {
-                ProjectileRingTest(projectileQuantity, startPointHigh, 0);
+                //ProjectileRingTest(projectileQuantity, startPointHigh, 0);
+                StartCoroutine(TargetedSingleShots());
+
             }
             else if (height == 2)
             {
-                ProjectileRingTest(projectileQuantity, startPoint, 0);
+                //ProjectileRingTest(projectileQuantity, startPoint, 0);
+                StartCoroutine(TargetedSingleShots());
             }
+            
             else if (height == 3)
             {
-                ProjectileRingTest(projectileQuantity, startPointLow, 0);
+                //ProjectileRingTest(projectileQuantity, startPointLow, 0);
+                StartCoroutine(TargetedSingleShots());
             }
       
             
@@ -101,7 +110,7 @@ public class HeartAttacks : MonoBehaviour
 
         if (startAngle < 360f)
         {
-            startAngle += 20;
+            startAngle += 30;
         }
         else
         {
@@ -135,5 +144,19 @@ public class HeartAttacks : MonoBehaviour
 
             angle += angleStep;
         }
+    }
+
+    IEnumerator TargetedSingleShots()
+    {
+        
+        for (int i = 0; i <= burstAmount; i++)
+        {
+            Vector3 projectileDirection = (player1.transform.position - transform.position).normalized * projectileMoveSpeed;
+            var proj = Instantiate(projectile, startPoint, Quaternion.identity);
+            proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
+            yield return new WaitForSeconds(0.2f);
+
+        }
+
     }
 }
