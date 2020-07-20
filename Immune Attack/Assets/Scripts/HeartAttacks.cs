@@ -151,7 +151,7 @@ public class HeartAttacks : MonoBehaviour
         
         for (int i = 0; i <= burstAmount; i++)
         {
-            Vector3 projectileDirection = (player1.transform.position - transform.position).normalized * projectileMoveSpeed;
+            Vector3 projectileDirection = (player1.transform.position - startPoint).normalized * projectileMoveSpeed;
             var proj = Instantiate(projectile, startPoint, Quaternion.identity);
             proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
             yield return new WaitForSeconds(0.2f);

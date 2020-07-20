@@ -12,8 +12,13 @@ public class WhiteCell : MonoBehaviour
     }
     State state;
 
-    public Stats stats;
-    public NavMeshAgent agent;
+    Stats stats;
+    NavMeshAgent agent;
+    Animator animator;
+
+    bool canAttack;
+    float attackRange;
+    float attackCooldown;
 
     public delegate void EnemyDeathDelegate(GameObject enemy);
     public static EnemyDeathDelegate EnemyDeath;
@@ -25,12 +30,17 @@ public class WhiteCell : MonoBehaviour
 
         stats = GetComponent<Stats>();
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
 
         stats.health = 50;
         stats.damage = 10;
         stats.moveSpeed = 10;
 
         agent.speed = stats.moveSpeed;
+
+        canAttack = true;
+        attackRange = 5f;
+        attackCooldown = 2f;
     }
 
     // Update is called once per frame
@@ -46,12 +56,6 @@ public class WhiteCell : MonoBehaviour
                 Attack();
                 break;
         }
-
-        //if enemy gets close enough to the player, switch to attack mode
-        if (Vector3.Distance(gameObject.transform.position, GameManager.manager.player.transform.position) < 5f)
-        {
-            state = State.Attack;
-        }
     }
 
     void Search()
@@ -63,6 +67,12 @@ public class WhiteCell : MonoBehaviour
             destination = hit.position;
         }
         agent.SetDestination(destination);
+
+        //if enemy gets close enough to the player, switch to attack mode
+        if (Vector3.Distance(gameObject.transform.position, GameManager.manager.player.transform.position) < attackRange)
+        {
+            state = State.Attack;
+        }
     }
 
     void Attack()
@@ -70,20 +80,35 @@ public class WhiteCell : MonoBehaviour
         //stand still and play attack animation and deal damage
         agent.SetDestination(gameObject.transform.position);
 
-        /*PLAY ANIMATION*/
-
-        
-
-
-
-
-
+        if (canAttack)
+        {
+            canAttack = false;
+            animator.SetTrigger("Attack");
+            StartCoroutine("AttackCooldown");
+        }
 
         //if the player moves too far away while in attack mode, switch back to search
-        if (Vector3.Distance(gameObject.transform.position, GameManager.manager.player.transform.position) > 8f)
+        if (Vector3.Distance(gameObject.transform.position, GameManager.manager.player.transform.position) > attackRange)
         {
             state = State.Search;
         }
+    }
+
+    //this function is triggered by an event in the animation of this object
+    //this happens right as the animation is biting down
+    void Damage()
+    {
+        //if the player is still close enough when the damage point happens
+        if (Vector3.Distance(gameObject.transform.position, GameManager.manager.player.transform.position) < attackRange)
+        {
+            GameManager.manager.player.GetComponent<Player>().TakeDamage(stats.damage);
+        }
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
 }

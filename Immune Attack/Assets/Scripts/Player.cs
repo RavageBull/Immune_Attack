@@ -6,8 +6,12 @@ public class Player : MonoBehaviour
 {
     public Stats stats;
 
-    // Start is called before the first frame update
-    void Start()
+    //event for when the player takes damage
+    public delegate void DamageDelegate();
+    public static DamageDelegate DamageTaken;
+
+    //this is set to awake in order for it to happen before anything searches for it in a start function
+    void Awake()
     {
         stats = GetComponent<Stats>();
         stats.health = 100;
@@ -19,5 +23,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void TakeDamage(float damage)
+    {
+        stats.health -= damage;
+
+        //DamageTaken event fires whenever this function is triggered
+        DamageTaken();
     }
 }

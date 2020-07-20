@@ -19,6 +19,7 @@ public class RoomManager : MonoBehaviour
     {
         Enemy.EnemyDeath -= EnemyUpdate;
     }
+
     // Start is called before the first frame update
     void Start()
     {
