@@ -22,6 +22,8 @@ public class HeartAttacks : MonoBehaviour
     [SerializeField]
     public GameObject player1;
     public int burstAmount;
+    public float distance;
+    public Vector3 perpDirection;
 
 
     // Start is called before the first frame update
@@ -38,26 +40,27 @@ public class HeartAttacks : MonoBehaviour
         if(Input.GetMouseButtonDown(1))
         {
             int height = Random.Range(1,4);
+            FloatingOrbs();
 
-            if (height == 1)
-            {
-                //ProjectileRingTest(projectileQuantity, startPointHigh, 0);
-                StartCoroutine(TargetedSingleShots());
+            /* if (height == 1)
+             {
+                 //ProjectileRingTest(projectileQuantity, startPointHigh, 0);
+                 //StartCoroutine(FloatingOrbs());
 
-            }
-            else if (height == 2)
-            {
-                //ProjectileRingTest(projectileQuantity, startPoint, 0);
-                StartCoroutine(TargetedSingleShots());
-            }
-            
-            else if (height == 3)
-            {
-                //ProjectileRingTest(projectileQuantity, startPointLow, 0);
-                StartCoroutine(TargetedSingleShots());
-            }
-      
-            
+             }
+             else if (height == 2)
+             {
+                 //ProjectileRingTest(projectileQuantity, startPoint, 0);
+                 //StartCoroutine(FloatingOrbs());
+             }
+
+             else if (height == 3)
+             {
+                 //ProjectileRingTest(projectileQuantity, startPointLow, 0);
+                 //StartCoroutine(FloatingOrbs());
+             } 
+             */
+
         }
 
         //type 1 = vertical shots
@@ -69,6 +72,7 @@ public class HeartAttacks : MonoBehaviour
     void ProjectileRingHorizontal(int projectileQuantity, Vector3 startpoint, int shootType)
     {
         //Shoots horizontally at 3 differnet heights, depending on the type it uses a different projectile
+        //Do this whole attack at random heights X times
         float angleStep = 360f / projectileQuantity;
         int type = shootType;
 
@@ -102,8 +106,9 @@ public class HeartAttacks : MonoBehaviour
 
 
 
-    void ProjectileRingTest(int projectileQuantity, Vector3 startpoint, int shootType)
+    void ProjectileRingSpinning(int projectileQuantity, Vector3 startpoint, int shootType)
     {
+        //Dp this attack X times back to back
         //Shoots horizontally at 3 differnet heights, depending on the type it uses a different projectile
         float angleStep = 360f / projectileQuantity;
         int type = shootType;
@@ -148,15 +153,26 @@ public class HeartAttacks : MonoBehaviour
 
     IEnumerator TargetedSingleShots()
     {
-        
+        //Do this attack once after a while
         for (int i = 0; i <= burstAmount; i++)
         {
             Vector3 projectileDirection = (player1.transform.position - startPoint).normalized * projectileMoveSpeed;
             var proj = Instantiate(projectile, startPoint, Quaternion.identity);
             proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.25f);
 
         }
+
+    }
+
+    void FloatingOrbs()
+    {
+        
+        Vector3 projectileDirection = (player1.transform.position - startPoint).normalized;
+        Vector3 projectileDirectionNeg = (player1.transform.position - startPoint).normalized * -1;
+        Vector3 projectileLocation = projectileDirectionNeg * distance;
+        perpDirection = Vector3.Cross(projectileDirectionNeg, Vector3.up).normalized;
+        var proj = Instantiate(projectile2, projectileLocation, Quaternion.identity);
 
     }
 }
