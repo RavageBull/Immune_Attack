@@ -6,7 +6,8 @@ public class RoomManager : MonoBehaviour
 {
     //This script holds the details of each room and gives relevant information as appropriate
 
-    [SerializeField] List<GameObject> enemyList;
+    List<GameObject> enemyList;
+
     [SerializeField] Transform portalPoint;
     [SerializeField] GameObject portalPrefab;
 
@@ -23,8 +24,13 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Could probably find all enemies in room and fill up the enemyList that way instead of having to manually input enemies
-        //Don't know which is more efficient
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemyList.Add(enemies[i]);
+        }
+        
     }
 
     void EnemyUpdate(GameObject enemy)
