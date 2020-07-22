@@ -222,6 +222,16 @@ PrefabInstance:
       propertyPath: enemyList.Array.data[2]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 874928981194719678, guid: 219d2c10fbe13744db0a3a084c440965,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 874928981194719678, guid: 219d2c10fbe13744db0a3a084c440965,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.91
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 219d2c10fbe13744db0a3a084c440965, type: 3}
 --- !u!4 &76004459 stripped
@@ -1075,6 +1085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomList: 00000000
   player: {fileID: 0}
+  room: {fileID: 0}
 --- !u!4 &1981708110
 Transform:
   m_ObjectHideFlags: 0
