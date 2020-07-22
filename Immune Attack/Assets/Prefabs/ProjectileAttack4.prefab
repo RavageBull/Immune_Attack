@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8081214245233395444}
   - component: {fileID: 1344057366697100931}
   - component: {fileID: 8517205670406028625}
-  - component: {fileID: 4442908781083117823}
+  - component: {fileID: -7585963680775221449}
   m_Layer: 10
   m_Name: ProjectileAttack4
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8724041495101748465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.918238, y: 3.52, z: 13.06}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bf95de8a8bec7247b8320b3450d1ee0, type: 2}
+  - {fileID: 2100000, guid: c8b2f3ce2d095764395ae6d94c58b275, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4442908781083117823
+--- !u!114 &-7585963680775221449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,9 +119,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8724041495101748465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d712c4d5d4fea54986c894bb7e718ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 1362efb66dc0d974bbf3b027e4841b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
   player1: {fileID: 0}
-  projectileMoveSpeed: 20
+  projectileMoveSpeed: 100

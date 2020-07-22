@@ -15,8 +15,8 @@ public class ProjectileSpawner : MonoBehaviour
         heartboss = GameObject.Find("HeartBoss");
         perpDir = heartboss.GetComponent<HeartAttacks>().perpDirection;
         StartCoroutine(OrbSpawner());
-        Debug.Log("neg spread is" + -spread);
-        Debug.Log("perDir is" + perpDir);
+        //Debug.Log("neg spread is" + -spread);
+        //Debug.Log("perDir is" + perpDir);
     }
 
     // Update is called once per frame
@@ -27,14 +27,16 @@ public class ProjectileSpawner : MonoBehaviour
 
     IEnumerator OrbSpawner()
     {
-        for (float i = -1 * spread; i <= spread; i+=5f)
+        for (float i = -1 * spread; i <= spread; i+=10f)
         {
+           
             Vector3 projLocation = transform.position + perpDir * i;
-            Debug.Log("Location is" + projLocation);
-            Debug.Log("i is" + i);
+            Vector3 projLocation2 = transform.position + perpDir * i + new Vector3(0, Random.Range(0, 20), 0);
+            //Debug.Log("Location is" + projLocation2);
+            //Debug.Log("i is" + i);
 
-            var projectileSpot = Instantiate(proj, projLocation, Quaternion.identity);
-            yield return new WaitForSeconds(0.5f);
+            var projectileSpot = Instantiate(proj, projLocation2, Quaternion.identity);
+            yield return new WaitForSeconds(0.1f);
         }
         
     }

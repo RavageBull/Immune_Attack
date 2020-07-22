@@ -172,8 +172,8 @@ public class HeartAttacks : MonoBehaviour
         Vector3 projectileDirectionNeg = (player1.transform.position - startPoint).normalized * -1;
         Vector3 projectileLocation = projectileDirectionNeg * distance;
         perpDirection = Vector3.Cross(projectileDirectionNeg, Vector3 .up).normalized;
-        Debug.Log("perpDirection is" + perpDirection);
-        Debug.Log("projectileDirectionNeg is " + projectileDirectionNeg);
+        //Debug.Log("perpDirection is" + perpDirection);
+        //Debug.Log("projectileDirectionNeg is " + projectileDirectionNeg);
         var proj = Instantiate(projectile2, projectileLocation, Quaternion.identity);
 
     }
