@@ -22,9 +22,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameManager.manager.player;
-
-        health.text = player.GetComponent<Stats>().health.ToString();
+        UpdateHealth();
+        
     }
 
     // Update is called once per frame
@@ -37,6 +36,9 @@ public class UIManager : MonoBehaviour
     //in turn trigger this function
     void UpdateHealth()
     {
-        health.text = player.GetComponent<Stats>().health.ToString();
+        if (GameManager.manager.player != null)
+        {
+            health.text = GameManager.manager.player.GetComponent<Stats>().health.ToString();
+        }
     }
 }

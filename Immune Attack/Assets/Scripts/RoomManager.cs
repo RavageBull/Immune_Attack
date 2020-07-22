@@ -8,8 +8,12 @@ public class RoomManager : MonoBehaviour
 
     public List<GameObject> enemyList;
 
+    public Transform playerSpawn;
     [SerializeField] Transform portalPoint;
     [SerializeField] GameObject portalPrefab;
+
+    public delegate void RoomSpawnDelegate(GameObject room);
+    public static RoomSpawnDelegate RoomSpawn;
 
     private void OnEnable()
     {
@@ -30,7 +34,10 @@ public class RoomManager : MonoBehaviour
         {
             enemyList.Add(enemies[i]);
         }
-        
+
+        //sends an event when spawned which should notify the game manager who the current room manager is
+        RoomSpawn(gameObject);
+
     }
 
     void EnemyUpdate(GameObject enemy)
