@@ -5,7 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float damage;
-    public bool HeartProjAttack4;
+    public GameObject player1;
+    public int projectileMoveSpeed;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +17,4 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
 }
