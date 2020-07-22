@@ -6,7 +6,7 @@ public class RoomManager : MonoBehaviour
 {
     //This script holds the details of each room and gives relevant information as appropriate
 
-    List<GameObject> enemyList;
+    public List<GameObject> enemyList;
 
     [SerializeField] Transform portalPoint;
     [SerializeField] GameObject portalPrefab;

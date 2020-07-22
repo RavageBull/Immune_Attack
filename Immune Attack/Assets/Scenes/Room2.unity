@@ -1335,7 +1335,7 @@ PrefabInstance:
     - target: {fileID: 564912404222493411, guid: 219d2c10fbe13744db0a3a084c440965,
         type: 3}
       propertyPath: enemyList.Array.size
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 564912404222493411, guid: 219d2c10fbe13744db0a3a084c440965,
         type: 3}
