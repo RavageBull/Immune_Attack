@@ -10,10 +10,13 @@ public class GameManager : MonoBehaviour
     public List<int> roomList;
 
     public GameObject player;
-
-    public GameObject room;
+    GameObject room;
+    GameObject sound;
 
     bool isLoading;
+
+    public delegate void FinishLoadingDelegate();
+    public static FinishLoadingDelegate FinishLoading;
 
     private void OnEnable()
     {
@@ -21,6 +24,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += Load;
         Player.PlayerSpawn += SetPlayer;
         RoomManager.RoomSpawn += SetRoom;
+        SoundManager.SoundSpawn += SetSound;
     }
 
     private void OnDisable()
@@ -29,6 +33,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= Load;
         Player.PlayerSpawn -= SetPlayer;
         RoomManager.RoomSpawn -= SetRoom;
+        SoundManager.SoundSpawn -= SetSound;
     }
 
     void Awake()
@@ -37,14 +42,20 @@ public class GameManager : MonoBehaviour
         else Destroy(this.gameObject);
 
         DontDestroyOnLoad(this.gameObject);
+
+
     }
 
+    //once a scene is loaded, we start to assign some values that need to be created
     void Load(Scene scene, LoadSceneMode mode)
     {
         room = null;
         isLoading = true;
         StartCoroutine("Loading");
     }
+
+    //this loop waits for the room and player variables to be assigned and possible other important values
+    //after thiis finishes, a finish loading event occurs for other scripts to know
     IEnumerator Loading()
     {
         while (isLoading)
@@ -56,9 +67,11 @@ public class GameManager : MonoBehaviour
                 player.GetComponent<CharacterController>().enabled = true;
 
                 isLoading = false;
+
+                FinishLoading();
             }
 
-            yield return new WaitForSeconds(0.1f);        
+            yield return new WaitForSeconds(0.05f);        
         }
     }
 
@@ -87,12 +100,26 @@ public class GameManager : MonoBehaviour
         
     }
 
+    void SetSound(GameObject inSound)
+    {
+        if (sound == null)
+        {
+            sound = inSound;
+        }
+        else
+        {
+            Destroy(inSound.gameObject);
+        }
+    }
+
     void NextScene()
     {
         int sceneIndex;
 
         sceneIndex = Random.Range(1, SceneManager.sceneCountInBuildSettings); //randomly searches for next room. temporary.
 
-        SceneManager.LoadScene(sceneIndex);
+        //SceneManager.LoadScene(sceneIndex);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

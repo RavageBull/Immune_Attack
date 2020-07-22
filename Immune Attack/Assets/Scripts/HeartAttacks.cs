@@ -20,7 +20,6 @@ public class HeartAttacks : MonoBehaviour
     public float startAngle;
 
     [SerializeField]
-    public GameObject player1;
     public int burstAmount;
     public float distance;
     public Vector3 perpDirection;
@@ -156,7 +155,7 @@ public class HeartAttacks : MonoBehaviour
         //Do this attack once after a while
         for (int i = 0; i <= burstAmount; i++)
         {
-            Vector3 projectileDirection = (player1.transform.position - startPoint).normalized * projectileMoveSpeed;
+            Vector3 projectileDirection = (GameManager.manager.player.transform.position - startPoint).normalized * projectileMoveSpeed;
             var proj = Instantiate(projectile, startPoint, Quaternion.identity);
             proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
             yield return new WaitForSeconds(0.25f);
@@ -168,8 +167,8 @@ public class HeartAttacks : MonoBehaviour
     void FloatingOrbs()
     {
         
-        Vector3 projectileDirection = (player1.transform.position - startPoint).normalized;
-        Vector3 projectileDirectionNeg = (player1.transform.position - startPoint).normalized * -1;
+        Vector3 projectileDirection = (GameManager.manager.player.transform.position - startPoint).normalized;
+        Vector3 projectileDirectionNeg = (GameManager.manager.player.transform.position - startPoint).normalized * -1;
         Vector3 projectileLocation = projectileDirectionNeg * distance;
         perpDirection = Vector3.Cross(projectileDirectionNeg, Vector3 .up).normalized;
         //Debug.Log("perpDirection is" + perpDirection);

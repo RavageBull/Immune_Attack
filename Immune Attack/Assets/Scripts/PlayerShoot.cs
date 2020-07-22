@@ -41,7 +41,7 @@ public class PlayerShoot : MonoBehaviour
             Reload();
         }
 
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButtonDown(0))
         {
             if (currentBullets > 0)
             {

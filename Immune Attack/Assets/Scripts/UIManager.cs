@@ -12,18 +12,13 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         Player.DamageTaken += UpdateHealth;
+        GameManager.FinishLoading += UpdateHealth;
     }
 
     private void OnDisable()
     {
         Player.DamageTaken -= UpdateHealth;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        UpdateHealth();
-        
+        GameManager.FinishLoading -= UpdateHealth;
     }
 
     // Update is called once per frame
