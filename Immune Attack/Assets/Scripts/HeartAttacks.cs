@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class HeartAttacks : MonoBehaviour
 {
-    [SerializeField]
-    int projectileQuantity;
+    public int projectileQuantity;
+    public int projectileQuantity2;
 
-    [SerializeField]
     public GameObject projectile;
     public GameObject projectile2;
     public Vector3 startPoint;
@@ -19,7 +18,6 @@ public class HeartAttacks : MonoBehaviour
     public float angle;
     public float startAngle;
 
-    [SerializeField]
     public int burstAmount;
     public float distance;
     public Vector3 perpDirection;
@@ -99,92 +97,94 @@ public class HeartAttacks : MonoBehaviour
 
     void ProjectileRingHorizontal()
     {
-        //projectileQuantity = ;
-        //startPoint = ;
-        int shootType = Random.Range(0, 2);
+        StartCoroutine(ProjectileRingHorizontalC());
+    }
 
-        //Shoots horizontally at 3 differnet heights, depending on the type it uses a different projectile
-        //Do this whole attack at random heights X times
-        float angleStep = 360f / projectileQuantity;
-        int type = shootType;
-
-        angle = 0f;
-
-        for (int i = 0; i<= projectileQuantity -1; i++)
+    IEnumerator ProjectileRingHorizontalC()
+    {
+        for (int j = 0; j <= 6; j++)
         {
-            float projectileX = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-            //float projectileY = newStartpoint.y + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-            float projectileY = startPoint.y;
-            float projectileZ = startPoint.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
+            List<Vector3> startPoints = new List<Vector3>();
+            startPoints.Add(new Vector3(0, 4, 0));
+            startPoints.Add(new Vector3(0, 8, 0));
+            startPoints.Add(new Vector3(0, 12, 0));
 
-            Vector3 projectileVector = new Vector3(projectileX, projectileY, projectileZ);
-            Vector3 projectileDirection = (projectileVector - startPoint).normalized * projectileMoveSpeed;
+            int x = Random.Range(0, startPoints.Count);
+            Vector3 startPointH = startPoints[x];
 
-            if (type == 1)
+            //Shoots horizontally at 3 differnet heights;
+            //Do this whole attack at random heights X times
+            float angleStep = 360f / projectileQuantity;
+
+            angle = 0f;
+
+            for (int i = 0; i <= projectileQuantity - 1; i++)
             {
-                var proj = Instantiate(projectile2, startPoint, Quaternion.identity);
-                proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
+                float projectileX = startPointH.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
+                //float projectileY = newStartpoint.y + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
+                float projectileY = startPointH.y;
+                float projectileZ = startPointH.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
 
-            }
-            else
-            {
-                var proj = Instantiate(projectile, startPoint, Quaternion.identity);
-                proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
-            }
+                Vector3 projectileVector = new Vector3(projectileX, projectileY, projectileZ);
+                Vector3 projectileDirection = (projectileVector - startPointH).normalized * projectileMoveSpeed;
 
-            angle += angleStep;   
+                var proj = Instantiate(projectile, startPointH, Quaternion.identity);
+                proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
+                angle += angleStep;
+            }
+            yield return new WaitForSeconds(0.75f);
         }
     }
 
-
-
     void ProjectileRingSpinning()
+    {
+        StartCoroutine(ProjectileRingSpinningC());
+    }
+
+    IEnumerator ProjectileRingSpinningC()
     {
         //projectileQuantity = ;
         //startPoint = ;
-        int shootType = Random.Range(0, 2);
+        //int shootType = Random.Range(0, 2);
 
         //Dp this attack X times back to back
-        //Shoots horizontally at 3 differnet heights, depending on the type it uses a different projectile
-        float angleStep = 360f / projectileQuantity;
-        int type = shootType;
-
-        if (startAngle < 360f)
+        //Shoots horizontally at 3 differnet heights, depending on the type it uses a different projectic
+        Vector3 startPointring = new Vector3(0, 3, 0);
+        for (int j = 0; j <= 30; j++)
         {
-            startAngle += 30;
-        }
-        else
-        {
-            startAngle = 0f;
-        }
+            float angleStep = 360f / projectileQuantity2;
+            //int type = shootType;
 
-        angle = 0f;
-        angle += startAngle;
-
-        for (int i = 0; i <= projectileQuantity - 1; i++)
-        {
-            float projectileX = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-            //float projectileY = newStartpoint.y + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-            float projectileY = startPoint.y;
-            float projectileZ = startPoint.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
-
-            Vector3 projectileVector = new Vector3(projectileX, projectileY, projectileZ);
-            Vector3 projectileDirection = (projectileVector - startPoint).normalized * projectileMoveSpeed;
-
-            if (type == 1)
+            if (startAngle < 360f)
             {
-                var proj = Instantiate(projectile2, startPoint, Quaternion.identity);
-                proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
-
+                startAngle += 30;
             }
             else
             {
-                var proj = Instantiate(projectile, startPoint, Quaternion.identity);
-                proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
+                startAngle = 0f;
             }
 
-            angle += angleStep;
+            angle = 0f;
+            angle += startAngle;
+
+            for (int i = 0; i <= projectileQuantity - 1; i++)
+            {
+                float projectileX = startPointring.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
+                //float projectileY = newStartpoint.y + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
+                float projectileY = startPointring.y;
+                float projectileZ = startPointring.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
+
+                Vector3 projectileVector = new Vector3(projectileX, projectileY, projectileZ);
+                Vector3 projectileDirection = (projectileVector - startPointring).normalized * projectileMoveSpeed;
+
+                var proj = Instantiate(projectile, startPointring, Quaternion.identity);
+                proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
+
+                angle += angleStep;
+            }
+            yield return new WaitForSeconds(0.2f);
         }
+   
     }
 
     void TargetedSingleShots()
@@ -200,7 +200,7 @@ public class HeartAttacks : MonoBehaviour
             Vector3 projectileDirection = (GameManager.manager.player.transform.position - startPoint).normalized * projectileMoveSpeed;
             var proj = Instantiate(projectile, startPoint, Quaternion.identity);
             proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
 
         }
 

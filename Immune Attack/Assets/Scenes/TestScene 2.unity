@@ -400,7 +400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403386242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.07, z: 0}
   m_LocalScale: {x: 75, y: 1, z: 75}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1563,18 +1563,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileQuantity: 25
+  projectileQuantity2: 8
   projectile: {fileID: 3177728472861683605, guid: dfc331004846cf94b859ea08ed86b778,
     type: 3}
   projectile2: {fileID: 8101034516650333216, guid: 726ee42275efa724b948f050dd7ae5c6,
     type: 3}
-  startPoint: {x: 0, y: 10, z: 0}
-  startPointHigh: {x: 0, y: 15, z: 0}
-  startPointLow: {x: 0, y: 5, z: 0}
+  startPoint: {x: 0, y: 5, z: 0}
+  startPointHigh: {x: 0, y: 10, z: 0}
+  startPointLow: {x: 0, y: 2.5, z: 0}
   radius: 10
   projectileMoveSpeed: 20
   angle: 0
   startAngle: 0
-  burstAmount: 5
+  burstAmount: 10
   distance: 20
   perpDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &2534866580746673216
@@ -1610,6 +1611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileQuantity: 25
+  projectileQuantity2: 0
   projectile: {fileID: 3177728472861683605, guid: dfc331004846cf94b859ea08ed86b778,
     type: 3}
   projectile2: {fileID: 8101034516650333216, guid: 726ee42275efa724b948f050dd7ae5c6,
