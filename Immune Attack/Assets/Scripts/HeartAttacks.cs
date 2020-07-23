@@ -24,13 +24,44 @@ public class HeartAttacks : MonoBehaviour
     public float distance;
     public Vector3 perpDirection;
 
+    Animator animator;
+
+    float beat;
+
+    delegate void BeatDelegate();
+    List<BeatDelegate> beatAttack = new List<BeatDelegate>();
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         angle = 0f;
         //radius = 10f;
         //projectileMoveSpeed = 2f;
+
+        beatAttack.Add(ProjectileRingHorizontal);
+        beatAttack.Add(ProjectileRingSpinning);
+        beatAttack.Add(TargetedSingleShots);
+        beatAttack.Add(FloatingOrbs);
+
+        beat = 3f;
+        StartCoroutine("BeatTimer");
+    }
+
+    IEnumerator BeatTimer()
+    {
+        while (gameObject != null)
+        {
+            yield return new WaitForSeconds(beat);
+
+            animator.SetTrigger("Beat");
+
+            int index = Random.Range(0, beatAttack.Count);
+            beatAttack[index]();
+
+            Debug.Log(index);
+        }
     }
 
     // Update is called once per frame
@@ -38,10 +69,10 @@ public class HeartAttacks : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
-            int height = Random.Range(1,4);
+            /*int height = Random.Range(1,4);
             FloatingOrbs();
 
-            /* if (height == 1)
+             if (height == 1)
              {
                  //ProjectileRingTest(projectileQuantity, startPointHigh, 0);
                  //StartCoroutine(FloatingOrbs());
@@ -66,10 +97,12 @@ public class HeartAttacks : MonoBehaviour
         //this is just to test out the boss attack functions
     }
 
-
-
-    void ProjectileRingHorizontal(int projectileQuantity, Vector3 startpoint, int shootType)
+    void ProjectileRingHorizontal()
     {
+        //projectileQuantity = ;
+        //startPoint = ;
+        int shootType = Random.Range(0, 2);
+
         //Shoots horizontally at 3 differnet heights, depending on the type it uses a different projectile
         //Do this whole attack at random heights X times
         float angleStep = 360f / projectileQuantity;
@@ -79,23 +112,23 @@ public class HeartAttacks : MonoBehaviour
 
         for (int i = 0; i<= projectileQuantity -1; i++)
         {
-            float projectileX = startpoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
+            float projectileX = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
             //float projectileY = newStartpoint.y + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-            float projectileY = startpoint.y;
-            float projectileZ = startpoint.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
+            float projectileY = startPoint.y;
+            float projectileZ = startPoint.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
 
             Vector3 projectileVector = new Vector3(projectileX, projectileY, projectileZ);
-            Vector3 projectileDirection = (projectileVector - startpoint).normalized * projectileMoveSpeed;
+            Vector3 projectileDirection = (projectileVector - startPoint).normalized * projectileMoveSpeed;
 
             if (type == 1)
             {
-                var proj = Instantiate(projectile2, startpoint, Quaternion.identity);
+                var proj = Instantiate(projectile2, startPoint, Quaternion.identity);
                 proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
 
             }
             else
             {
-                var proj = Instantiate(projectile, startpoint, Quaternion.identity);
+                var proj = Instantiate(projectile, startPoint, Quaternion.identity);
                 proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
             }
 
@@ -105,8 +138,12 @@ public class HeartAttacks : MonoBehaviour
 
 
 
-    void ProjectileRingSpinning(int projectileQuantity, Vector3 startpoint, int shootType)
+    void ProjectileRingSpinning()
     {
+        //projectileQuantity = ;
+        //startPoint = ;
+        int shootType = Random.Range(0, 2);
+
         //Dp this attack X times back to back
         //Shoots horizontally at 3 differnet heights, depending on the type it uses a different projectile
         float angleStep = 360f / projectileQuantity;
@@ -126,23 +163,23 @@ public class HeartAttacks : MonoBehaviour
 
         for (int i = 0; i <= projectileQuantity - 1; i++)
         {
-            float projectileX = startpoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
+            float projectileX = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
             //float projectileY = newStartpoint.y + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-            float projectileY = startpoint.y;
-            float projectileZ = startpoint.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
+            float projectileY = startPoint.y;
+            float projectileZ = startPoint.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
 
             Vector3 projectileVector = new Vector3(projectileX, projectileY, projectileZ);
-            Vector3 projectileDirection = (projectileVector - startpoint).normalized * projectileMoveSpeed;
+            Vector3 projectileDirection = (projectileVector - startPoint).normalized * projectileMoveSpeed;
 
             if (type == 1)
             {
-                var proj = Instantiate(projectile2, startpoint, Quaternion.identity);
+                var proj = Instantiate(projectile2, startPoint, Quaternion.identity);
                 proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
 
             }
             else
             {
-                var proj = Instantiate(projectile, startpoint, Quaternion.identity);
+                var proj = Instantiate(projectile, startPoint, Quaternion.identity);
                 proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
             }
 
@@ -150,7 +187,12 @@ public class HeartAttacks : MonoBehaviour
         }
     }
 
-    IEnumerator TargetedSingleShots()
+    void TargetedSingleShots()
+    {
+        StartCoroutine(TargetedSingleShotsTimer());
+    }
+
+    IEnumerator TargetedSingleShotsTimer()
     {
         //Do this attack once after a while
         for (int i = 0; i <= burstAmount; i++)
@@ -166,7 +208,6 @@ public class HeartAttacks : MonoBehaviour
 
     void FloatingOrbs()
     {
-        
         Vector3 projectileDirection = (GameManager.manager.player.transform.position - startPoint).normalized;
         Vector3 projectileDirectionNeg = (GameManager.manager.player.transform.position - startPoint).normalized * -1;
         Vector3 projectileLocation = projectileDirectionNeg * distance;
@@ -174,6 +215,6 @@ public class HeartAttacks : MonoBehaviour
         //Debug.Log("perpDirection is" + perpDirection);
         //Debug.Log("projectileDirectionNeg is " + projectileDirectionNeg);
         var proj = Instantiate(projectile2, projectileLocation, Quaternion.identity);
-
+        proj.GetComponent<ProjectileSpawner>().perpDir = perpDirection;
     }
 }

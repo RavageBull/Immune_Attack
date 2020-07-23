@@ -7,13 +7,12 @@ public class ProjectileSpawner : MonoBehaviour
     public GameObject heartboss;
     public GameObject proj;
     public int spread;
-    Vector3 perpDir;
+    
+    public Vector3 perpDir;
 
     // Start is called before the first frame update
     void Start()
     {
-        heartboss = GameObject.Find("HeartBoss");
-        perpDir = heartboss.GetComponent<HeartAttacks>().perpDirection;
         StartCoroutine(OrbSpawner());
         //Debug.Log("neg spread is" + -spread);
         //Debug.Log("perDir is" + perpDir);
