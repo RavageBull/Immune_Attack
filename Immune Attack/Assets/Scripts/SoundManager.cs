@@ -17,28 +17,33 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         SoundSpawn(gameObject);
 
         source = GetComponent<AudioSource>();
 
-        source.clip = startLoop;
-        source.Play();
-        StartCoroutine(SongEnd(source.clip.length - 0.25f));
+        PlayStart();
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayStart()
     {
-        
+        StopCoroutine("SongEnd");
+
+        source.clip = startLoop;
+        source.Play();
+        StartCoroutine(SongEnd(source.clip.length - 0.25f));
     }
 
     IEnumerator SongEnd(float duration)
     {
         yield return new WaitForSeconds(duration);
+        PlayLoop();
+    }
+
+    void PlayLoop()
+    {
         source.clip = mainLoop;
         source.Play();
         source.loop = true;

@@ -20,6 +20,8 @@ public class ProjectileATTACK4 : MonoBehaviour
 
     void Start()
     {
+        damage = 10f;
+
         player1 = GameManager.manager.player;
         StartCoroutine(Shots());
     }

@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public delegate void FinishLoadingDelegate();
     public static FinishLoadingDelegate FinishLoading;
 
+    public delegate void RotatePlayerDelegate(Quaternion rotation);
+    public static RotatePlayerDelegate RotatePlayer;
+
     private void OnEnable()
     {
         Portal.EnterPortal += NextScene;
@@ -66,6 +69,8 @@ public class GameManager : MonoBehaviour
                 player.transform.position = room.GetComponent<RoomManager>().playerSpawn.position;
                 player.GetComponent<CharacterController>().enabled = true;
 
+                RotatePlayer(room.GetComponent<RoomManager>().playerSpawn.rotation);
+
                 isLoading = false;
 
                 FinishLoading();
@@ -75,7 +80,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    private void Update()
+    {
+        if (Input.GetKey("e"))
+        {
+            player.transform.Rotate(0, 30, 0);
+        }
+    }
+
+
 
     //this triggers when a room is spawned
     void SetRoom(GameObject inRoom)
@@ -109,6 +122,12 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(inSound.gameObject);
+        }
+
+        //if it is the boss room, play the start song again
+        if (SceneManager.GetActiveScene().name == "TestScene 2")
+        {
+            sound.GetComponent<SoundManager>().PlayStart();
         }
     }
 

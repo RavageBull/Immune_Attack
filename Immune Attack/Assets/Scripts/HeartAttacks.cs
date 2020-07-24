@@ -22,6 +22,7 @@ public class HeartAttacks : MonoBehaviour
     public float distance;
     public Vector3 perpDirection;
 
+    Stats stats;
     Animator animator;
 
     float beat;
@@ -32,6 +33,10 @@ public class HeartAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stats = GetComponent<Stats>();
+        stats.health = 750;
+        stats.damage = 10;
+
         animator = GetComponent<Animator>();
 
         angle = 0f;
@@ -129,6 +134,8 @@ public class HeartAttacks : MonoBehaviour
                 Vector3 projectileDirection = (projectileVector - startPointH).normalized * projectileMoveSpeed;
 
                 var proj = Instantiate(projectile, startPointH, Quaternion.identity);
+                proj.GetComponent<Projectile>().damage = stats.damage;
+                Destroy(proj.gameObject, 5);
                 proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
                 angle += angleStep;
             }
@@ -178,6 +185,8 @@ public class HeartAttacks : MonoBehaviour
                 Vector3 projectileDirection = (projectileVector - startPointring).normalized * projectileMoveSpeed;
 
                 var proj = Instantiate(projectile, startPointring, Quaternion.identity);
+                proj.GetComponent<Projectile>().damage = stats.damage;
+                Destroy(proj.gameObject, 5);
                 proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
 
                 angle += angleStep;
@@ -199,6 +208,8 @@ public class HeartAttacks : MonoBehaviour
         {
             Vector3 projectileDirection = (GameManager.manager.player.transform.position - startPoint).normalized * projectileMoveSpeed;
             var proj = Instantiate(projectile, startPoint, Quaternion.identity);
+            proj.GetComponent<Projectile>().damage = stats.damage;
+            Destroy(proj.gameObject, 5);
             proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
             yield return new WaitForSeconds(0.1f);
 

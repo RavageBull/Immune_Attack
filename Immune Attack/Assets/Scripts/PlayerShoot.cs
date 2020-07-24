@@ -41,7 +41,7 @@ public class PlayerShoot : MonoBehaviour
             Reload();
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0))
         {
             if (currentBullets > 0)
             {
@@ -80,6 +80,7 @@ public class PlayerShoot : MonoBehaviour
             if (hit.transform.tag != "Enemy")
             {
                 GameObject hitObject = Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                hitObject.transform.parent = hit.transform;
                 Destroy(hitObject, 2f);
 
             }
