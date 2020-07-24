@@ -16,6 +16,11 @@ public class ProjectileATTACK4 : MonoBehaviour
 
             Destroy(gameObject);
         }
+
+        if (other.tag == "Obstacle")
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()

@@ -18,9 +18,6 @@ public class GameManager : MonoBehaviour
     public delegate void FinishLoadingDelegate();
     public static FinishLoadingDelegate FinishLoading;
 
-    public delegate void RotatePlayerDelegate(Quaternion rotation);
-    public static RotatePlayerDelegate RotatePlayer;
-
     private void OnEnable()
     {
         Portal.EnterPortal += NextScene;
@@ -68,8 +65,6 @@ public class GameManager : MonoBehaviour
                 player.GetComponent<CharacterController>().enabled = false;
                 player.transform.position = room.GetComponent<RoomManager>().playerSpawn.position;
                 player.GetComponent<CharacterController>().enabled = true;
-
-                RotatePlayer(room.GetComponent<RoomManager>().playerSpawn.rotation);
 
                 isLoading = false;
 
@@ -139,6 +134,14 @@ public class GameManager : MonoBehaviour
 
         //SceneManager.LoadScene(sceneIndex);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            Application.Quit();
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        
     }
 }

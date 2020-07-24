@@ -29,11 +29,21 @@ public class SoundManager : MonoBehaviour
 
     public void PlayStart()
     {
-        StopCoroutine("SongEnd");
+        if (source != null)
+        {
+            StopCoroutine("SongEnd");
 
-        source.clip = startLoop;
-        source.Play();
-        StartCoroutine(SongEnd(source.clip.length - 0.25f));
+            if (source.isPlaying)
+            {
+                source.Stop();
+            }
+
+            source.clip = startLoop;
+            source.Play();
+            StartCoroutine(SongEnd(source.clip.length - 0.25f));
+        }
+
+        
     }
 
     IEnumerator SongEnd(float duration)

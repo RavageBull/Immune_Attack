@@ -50,12 +50,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         float jumpTimer;
         float jumpTimerCap;
 
-        private void OnEnable()
-        {
-            
-           
-        }
-
         // Use this for initialization
         private void Start()
         {
@@ -288,12 +282,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
-
-        public void UpdateRotate(Quaternion newRotation)
-        {
-            m_MouseLook.UpdateRotate(transform, m_Camera.transform, newRotation);
-        }
-
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {

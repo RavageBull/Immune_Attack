@@ -308,7 +308,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
-  camera: {fileID: 100002}
 --- !u!114 &3568043773501244101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyObject: {fileID: 0}
   bulletsMag: 30
-  bulletsTotal: 300
+  bulletsTotal: 1000
   gunfireRate: 0.15
   fireTimer: 0
   gunATK: 10
