@@ -1727,7 +1727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileQuantity: 25
-  projectileQuantity2: 8
+  projectileQuantity2: 3
   projectile: {fileID: 3177728472861683605, guid: dfc331004846cf94b859ea08ed86b778,
     type: 3}
   projectile2: {fileID: 8101034516650333216, guid: 726ee42275efa724b948f050dd7ae5c6,

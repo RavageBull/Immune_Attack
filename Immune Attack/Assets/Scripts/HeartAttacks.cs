@@ -157,14 +157,14 @@ public class HeartAttacks : MonoBehaviour
         //Dp this attack X times back to back
         //Shoots horizontally at 3 differnet heights, depending on the type it uses a different projectic
         Vector3 startPointring = new Vector3(0, 3, 0);
-        for (int j = 0; j <= 30; j++)
+        for (int j = 0; j <= 100; j++)
         {
             float angleStep = 360f / projectileQuantity2;
             //int type = shootType;
 
             if (startAngle < 360f)
             {
-                startAngle += 30;
+                startAngle += 5;
             }
             else
             {
@@ -191,7 +191,7 @@ public class HeartAttacks : MonoBehaviour
 
                 angle += angleStep;
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.05f);
         }
    
     }
