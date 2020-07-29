@@ -8,17 +8,20 @@ public class UIManager : MonoBehaviour
     GameObject player;
 
     public Text health;
+    public Image gunImage;
 
     private void OnEnable()
     {
         Player.DamageTaken += UpdateHealth;
         GameManager.FinishLoading += UpdateHealth;
+        PlayerShoot.ShootAni += ShootAnimation;
     }
 
     private void OnDisable()
     {
         Player.DamageTaken -= UpdateHealth;
         GameManager.FinishLoading -= UpdateHealth;
+        PlayerShoot.ShootAni -= ShootAnimation;
     }
 
     // Update is called once per frame
@@ -35,5 +38,10 @@ public class UIManager : MonoBehaviour
         {
             health.text = GameManager.manager.player.GetComponent<Stats>().health.ToString();
         }
+    }
+
+    void ShootAnimation()
+    {
+        gunImage.GetComponent<Animator>().SetTrigger("Shoot");
     }
 }

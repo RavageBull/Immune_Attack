@@ -24,6 +24,10 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] GameObject spark; //temp
     [SerializeField] Camera cam; //temp
 
+    //an event that fires when the player shoots so the UI manager can see it and animate the gun
+    //should maybe tie the gun image to player instead of UI. Will look at later.
+    public delegate void ShootAniDelegate();
+    public static ShootAniDelegate ShootAni;
 
     // Start is called before the first frame update
     void Start()
@@ -102,6 +106,7 @@ public class PlayerShoot : MonoBehaviour
            
         }
 
+        ShootAni();
         PlayShootSound();
         currentBullets--;
         fireTimer = 0.0f;
