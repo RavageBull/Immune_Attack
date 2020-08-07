@@ -9,7 +9,10 @@ public class BladderAttacks : MonoBehaviour
     /// Reflection Raycast stuff
     public int maxReflectionCount = 5;
     public float maxStepDistance = 200;
-
+    public GameObject lineRenderer;
+    public LineRenderer lr;
+    public GameObject lazerStart;
+    public int lrPos = 0;
     //Attack Stats
     public int meteorCount = 20;
     public float meteorSpeed;
@@ -21,7 +24,8 @@ public class BladderAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        lr = GetComponent<LineRenderer>();
+        lineRenderer.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,6 +34,7 @@ public class BladderAttacks : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(MeteorShower());
+            lineRenderer.SetActive(true);
         }
     }
 
@@ -38,7 +43,7 @@ public class BladderAttacks : MonoBehaviour
         for (int i = 0; i <= meteorCount; i++)
         {
 
-            var projectile = Instantiate(Meteor, transform.position, Quaternion.identity);
+            var projectile = Instantiate(Meteor, transform.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f)), Quaternion.identity);
             var rb = projectile.GetComponent<Rigidbody>();
             rb.AddForce(transform.up * meteorSpeed);
             Destroy(projectile, 2f);
@@ -47,10 +52,11 @@ public class BladderAttacks : MonoBehaviour
 
         for (int j = 0; j <= meteorCount; j++)
         {
-            var projectile2 = Instantiate(HomingProjectile, GameManager.manager.player.transform.position + new Vector3(Random.Range(0.25f, 5f), 100f, Random.Range(0.25f, 5f)), Quaternion.identity);
+            //+new Vector3(Random.Range(0.25f, 5f), 100f, Random.Range(0.25f, 5f))
+            var projectile2 = Instantiate(Meteor, GameManager.manager.player.transform.position + new Vector3(Random.Range(-10f, 10f), 100, Random.Range(-10f, 10f)), Quaternion.identity);
             var rb2 = projectile2.GetComponent<Rigidbody>();
-            rb2.AddForce(transform.up * - meteorSpeed);
-            Destroy(projectile2, 2f);
+            rb2.AddForce(transform.up * -meteorSpeed);
+            //Destroy(projectile2, 2f);
         }
 
 
@@ -129,10 +135,13 @@ public class BladderAttacks : MonoBehaviour
 
     private void DrawPredictedReflectionPattern(Vector3  position, Vector3 direction, int reflectionsRemaining)
     {
-        if (reflectionsRemaining ==0)
+        if (reflectionsRemaining == 0)
         {
+            lrPos = 0;
             return;
         }
+
+        lrPos++;
 
         Vector3 startingPosition = position;
         Ray ray = new Ray(position, direction);
@@ -142,6 +151,7 @@ public class BladderAttacks : MonoBehaviour
         {
             direction = Vector3.Reflect(direction, hit.normal);
             position = hit.point;
+            lr.SetPosition(lrPos, hit.point);
         }
         else
         {
@@ -150,8 +160,8 @@ public class BladderAttacks : MonoBehaviour
      
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(startingPosition, position);
-     
 
+       
         DrawPredictedReflectionPattern(position, direction, reflectionsRemaining - 1);
     }
 }
