@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//The B Cell walks towards the player until the player is in its sight. Then the B Cell periodically attacks from afar.
+//If the player gets too close, the B Cell will attempt to flee.
 public class BCell : MonoBehaviour
 {
     enum State
@@ -10,6 +12,7 @@ public class BCell : MonoBehaviour
         Search,
         Attack,
         Flee,
+        Death,
     }
     State state;
 
@@ -192,6 +195,14 @@ public class BCell : MonoBehaviour
             }
         }
 
+    }
+
+    //this is triggered when the start of death animation is played.
+    //this switches the ai state and makes it stop in its tracks.
+    public void DeathStop()
+    {
+        state = State.Death;
+        agent.SetDestination(gameObject.transform.position);
     }
 
 }

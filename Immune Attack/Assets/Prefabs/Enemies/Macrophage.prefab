@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 291422401298524422}
   - component: {fileID: 3644974385467367833}
   - component: {fileID: 291422401298524423}
-  - component: {fileID: 291422401298524416}
+  - component: {fileID: 8345903274368245827}
   - component: {fileID: 291422401298524417}
   m_Layer: 0
   m_Name: Macrophage
@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291422401298524540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.55, y: 6.34, z: 22.89}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 6, y: 6, z: 6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &291422401298524422
 NavMeshAgent:
@@ -119,7 +119,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.7066667
-  m_BaseOffset: 1.5
+  m_BaseOffset: 4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3644974385467367833
@@ -150,7 +150,7 @@ MonoBehaviour:
   moveSpeed: 0
   damage: 0
   origin: {fileID: 0}
---- !u!114 &291422401298524416
+--- !u!114 &8345903274368245827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 291422401298524540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69a5e5167e880242a1451743a818503, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ec83248cc2b39849ac9752190385dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &291422401298524417

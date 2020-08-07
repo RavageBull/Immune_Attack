@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 public class MenuButtons : MonoBehaviour
 {
     public void Play()
@@ -17,7 +16,6 @@ public class MenuButtons : MonoBehaviour
 
     public void Exit()
     {
-        EditorApplication.isPlaying = false;
         Application.Quit();
     }
 }

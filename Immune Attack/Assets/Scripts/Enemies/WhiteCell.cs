@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//The White Cell moves towards the player. Once in melee range, the white cell attacks.
 public class WhiteCell : MonoBehaviour
 {
     enum State
     {
         Search,
         Attack,
+        Death,
     }
     State state;
 
@@ -109,6 +111,14 @@ public class WhiteCell : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+    }
+
+    //this is triggered when the start of death animation is played.
+    //this switches the ai state and makes it stop in its tracks.
+    public void DeathStop()
+    {
+        state = State.Death;
+        agent.SetDestination(gameObject.transform.position);
     }
 
 }

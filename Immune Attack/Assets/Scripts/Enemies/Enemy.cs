@@ -43,9 +43,23 @@ public class Enemy : MonoBehaviour
 
         if (stats.health <= 0)
         {
+            if (GetComponent<Animator>())
+            {
+                GetComponent<Animator>().SetTrigger("Death");
+            }
+            else
+            {
+                Death();
+            }
+            
+        }
+
+        if (stats.health < -50)
+        {
             Death();
         }
-        
+
+
     }
 
     public void Death()
