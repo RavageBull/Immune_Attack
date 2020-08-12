@@ -22,6 +22,11 @@ public class WhiteCell : MonoBehaviour
     float attackRange;
     float attackCooldown;
 
+    [SerializeField] AudioClip attackClip;
+    [SerializeField] AudioClip deathClip;
+
+    AudioSource audioSource;
+
     public delegate void EnemyDeathDelegate(GameObject enemy);
     public static EnemyDeathDelegate EnemyDeath;
 
@@ -33,6 +38,7 @@ public class WhiteCell : MonoBehaviour
         stats = GetComponent<Stats>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         stats.health = 50;
         stats.damage = 10;
@@ -87,6 +93,9 @@ public class WhiteCell : MonoBehaviour
             canAttack = false;
             animator.SetTrigger("Attack");
             StartCoroutine("AttackCooldown");
+
+            audioSource.clip = attackClip;
+            audioSource.Play();
         }
 
         //if the player moves too far away while in attack mode, switch back to search
@@ -119,6 +128,9 @@ public class WhiteCell : MonoBehaviour
     {
         state = State.Death;
         agent.SetDestination(gameObject.transform.position);
+
+        audioSource.clip = deathClip;
+        audioSource.Play();
     }
 
 }

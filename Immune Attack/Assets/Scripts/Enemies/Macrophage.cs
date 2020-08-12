@@ -27,6 +27,13 @@ public class Macrophage : MonoBehaviour
     float attackCooldown;
     float prevHealth;
 
+    [SerializeField] AudioClip attackClip;
+    [SerializeField] AudioClip deathClip;
+
+    AudioSource audioSource;
+
+
+
     public delegate void EnemyDeathDelegate(GameObject enemy);
     public static EnemyDeathDelegate EnemyDeath;
 
@@ -38,6 +45,7 @@ public class Macrophage : MonoBehaviour
         stats = GetComponent<Stats>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         stats.health = 300;
         stats.damage = 30;
@@ -83,6 +91,8 @@ public class Macrophage : MonoBehaviour
         {
             state = State.Search;
             animator.SetTrigger("Search");
+            audioSource.clip = attackClip;
+            audioSource.Play();
         }
     }
 
@@ -154,6 +164,9 @@ public class Macrophage : MonoBehaviour
     {
         state = State.Death;
         agent.SetDestination(gameObject.transform.position);
+
+        audioSource.clip = deathClip;
+        audioSource.Play();
     }
 
 }

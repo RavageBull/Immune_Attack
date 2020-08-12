@@ -22,6 +22,10 @@ public class KillerTCell : MonoBehaviour
     float attackRange;
     float attackCooldown;
 
+    [SerializeField] AudioClip attackClip;
+    [SerializeField] AudioClip deathClip;
+    AudioSource audioSource;
+
     public delegate void EnemyDeathDelegate(GameObject enemy);
     public static EnemyDeathDelegate EnemyDeath;
 
@@ -33,6 +37,7 @@ public class KillerTCell : MonoBehaviour
         stats = GetComponent<Stats>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         stats.health = 100;
         stats.damage = 20;
@@ -87,6 +92,9 @@ public class KillerTCell : MonoBehaviour
             canAttack = false;
             animator.SetTrigger("Attack");
             StartCoroutine("AttackCooldown");
+
+            audioSource.clip = attackClip;
+            audioSource.Play();
         }
 
         //if the player moves too far away while in attack mode, switch back to search
@@ -119,6 +127,9 @@ public class KillerTCell : MonoBehaviour
     {
         state = State.Death;
         agent.SetDestination(gameObject.transform.position);
+
+        audioSource.clip = deathClip;
+        audioSource.Play();
     }
 
 }

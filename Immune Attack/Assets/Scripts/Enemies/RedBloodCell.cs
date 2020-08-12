@@ -13,8 +13,12 @@ public class RedBloodCell : MonoBehaviour
 
     [SerializeField]
     GameObject trailPrefab;
-
     GameObject trail;
+
+    [SerializeField] AudioClip attackClip;
+    [SerializeField] AudioClip deathClip;
+
+    AudioSource audioSource;
 
     float activeRange;
     float attackRange;
@@ -25,6 +29,7 @@ public class RedBloodCell : MonoBehaviour
         stats = GetComponent<Stats>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         stats.health = 50;
         stats.damage = 10;
@@ -51,6 +56,12 @@ public class RedBloodCell : MonoBehaviour
         if (Vector3.Distance(gameObject.transform.position, GameManager.manager.player.transform.position) < activeRange)
         {
             animator.SetTrigger("Attack");
+
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = attackClip;
+                audioSource.Play();
+            }
         }
     }
 
@@ -78,5 +89,8 @@ public class RedBloodCell : MonoBehaviour
     {
         Destroy(trail.gameObject);
         rb.velocity = Vector3.zero;
+
+        audioSource.clip = deathClip;
+        audioSource.Play();
     }
 }
