@@ -55,7 +55,7 @@ public class Macrophage : MonoBehaviour
 
         searchRange = 20f;
         canAttack = true;
-        attackRange = 8f;
+        attackRange = 12f;
         attackCooldown = 2f;
 
         prevHealth = stats.health;

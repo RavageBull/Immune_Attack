@@ -46,7 +46,7 @@ public class KillerTCell : MonoBehaviour
         agent.speed = stats.moveSpeed;
 
         canAttack = true;
-        attackRange = 5f;
+        attackRange = 10f;
         attackCooldown = 2f;
     }
 

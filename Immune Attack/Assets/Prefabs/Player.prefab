@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyObject: {fileID: 0}
-  bulletsMag: 30
+  bulletsMag: 20
   bulletsTotal: 1000
   gunfireRate: 0.15
   fireTimer: 0

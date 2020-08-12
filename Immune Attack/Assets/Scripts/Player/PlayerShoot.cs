@@ -8,7 +8,7 @@ public class PlayerShoot : MonoBehaviour
     public GameObject EnemyObject;
 
     //Base Gun Stats//
-    public int bulletsMag = 30;
+    public int bulletsMag = 20;
     public int bulletsTotal = 300;
     public float gunfireRate = 0.1f;
     public float fireTimer;
@@ -16,6 +16,10 @@ public class PlayerShoot : MonoBehaviour
     public float gunRange = 100f;
     public Transform startingshootPoint;
     public int currentBullets;
+
+    bool canRecharge;
+    float rechargeDelay;
+    float rechargeTime;
 
     private AudioSource _AudioSource;
     public AudioClip shootSound;
@@ -29,11 +33,18 @@ public class PlayerShoot : MonoBehaviour
     public delegate void ShootAniDelegate();
     public static ShootAniDelegate ShootAni;
 
+    //an event that fired whenever the player shoots so the UI manager can track the player's bullets.
+    public delegate void AmmoDelegate();
+    public static AmmoDelegate AmmoUpdate;
+
     // Start is called before the first frame update
     void Start()
     {
         currentBullets = bulletsMag;
         _AudioSource = GetComponent<AudioSource>();
+
+        rechargeDelay = 0.5f;
+        rechargeTime = 0.5f;
     }
 
 
@@ -42,7 +53,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if(Input.GetKeyDown("r"))
         {
-            Reload();
+            //Reload();
         }
 
         if(Input.GetMouseButton(0))
@@ -53,7 +64,7 @@ public class PlayerShoot : MonoBehaviour
             }
             else if (currentBullets == 0)
             {
-                Reload();
+                //Reload(); no reload atm
             }
         }
 
@@ -70,6 +81,11 @@ public class PlayerShoot : MonoBehaviour
         {
             return;
         }
+
+        //once the player shoots, they cannot recharge their ammo until a certain amount of time has passed
+        canRecharge = false;
+        StopCoroutine("RechargeDelay"); //since this function triggers multiple times, we restart the coroutine
+        StartCoroutine("RechargeDelay");
 
         RaycastHit hit;
 
@@ -106,10 +122,32 @@ public class PlayerShoot : MonoBehaviour
            
         }
 
-        ShootAni();
+        ShootAni(); //event for UI to animate gun shot
         PlayShootSound();
         currentBullets--;
         fireTimer = 0.0f;
+
+        AmmoUpdate();
+    }
+
+    //a small delay that happens when firing before the player can start to recharge ammo again
+    IEnumerator RechargeDelay()
+    {
+        yield return new WaitForSeconds(rechargeDelay);
+        canRecharge = true;
+        StopCoroutine("Recharge");
+        StartCoroutine("Recharge");
+    }
+
+    //recharges ammo at a steady pace
+    IEnumerator Recharge()
+    {
+        while(canRecharge && currentBullets < bulletsMag)
+        {
+            currentBullets++;
+            AmmoUpdate();
+            yield return new WaitForSeconds(rechargeTime);
+        }
     }
 
     private void PlayShootSound()
@@ -123,6 +161,7 @@ public class PlayerShoot : MonoBehaviour
         EnemyObject.GetComponent<Enemy>().TakeDamage(gunATK);
     }
 
+    //currently obsolete
     private void Reload()
     {
         if(bulletsTotal <= 0)

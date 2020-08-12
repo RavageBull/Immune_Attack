@@ -47,7 +47,7 @@ public class WhiteCell : MonoBehaviour
         agent.speed = stats.moveSpeed;
 
         canAttack = true;
-        attackRange = 5f;
+        attackRange = 8f;
         attackCooldown = 2f;
     }
 
