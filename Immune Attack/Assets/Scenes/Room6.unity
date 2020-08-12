@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000000, guid: fa70aebd2f395074a960b6709cc71a00,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1430,7 +1430,7 @@ PrefabInstance:
     - target: {fileID: 6733234715636860448, guid: f0e8d27bb60276047a431e68889158f4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 5.32
       objectReference: {fileID: 0}
     - target: {fileID: 6733234715636860448, guid: f0e8d27bb60276047a431e68889158f4,
         type: 3}
@@ -1637,7 +1637,7 @@ PrefabInstance:
     - target: {fileID: 6733234715636860448, guid: f0e8d27bb60276047a431e68889158f4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1
+      value: 4.91
       objectReference: {fileID: 0}
     - target: {fileID: 6733234715636860448, guid: f0e8d27bb60276047a431e68889158f4,
         type: 3}
