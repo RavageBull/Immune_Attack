@@ -24,8 +24,9 @@ public class BladderAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lr = GetComponent<LineRenderer>();
-        lineRenderer.SetActive(false);
+        lr = lineRenderer.GetComponent<LineRenderer>();
+        lr.enabled = false;
+        lr.useWorldSpace = true;
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class BladderAttacks : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(MeteorShower());
-            lineRenderer.SetActive(true);
+            lr.enabled = true;
         }
     }
 
