@@ -23,7 +23,7 @@ public class NatKillerCell : MonoBehaviour
     Animator animator;
 
 
-    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] GameObject projectilePrefab = null;
     bool canAttack;
     float attackRange;
     float attackCooldown;
@@ -32,7 +32,6 @@ public class NatKillerCell : MonoBehaviour
 
     bool canPatrol;
     float patrolCooldown;
-
 
     public delegate void EnemyDeathDelegate(GameObject enemy);
     public static EnemyDeathDelegate EnemyDeath;

@@ -27,8 +27,8 @@ public class Macrophage : MonoBehaviour
     float attackCooldown;
     float prevHealth;
 
-    [SerializeField] AudioClip attackClip;
-    [SerializeField] AudioClip deathClip;
+    [SerializeField] AudioClip attackClip = null;
+    [SerializeField] AudioClip deathClip = null;
 
     AudioSource audioSource;
 

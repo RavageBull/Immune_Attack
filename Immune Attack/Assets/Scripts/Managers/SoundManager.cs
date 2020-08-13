@@ -6,8 +6,8 @@ public class SoundManager : MonoBehaviour
 {
     AudioSource source;
 
-    [SerializeField] AudioClip startLoop;
-    [SerializeField] AudioClip mainLoop;
+    [SerializeField] AudioClip startLoop = null;
+    [SerializeField] AudioClip mainLoop = null;
 
     public delegate void SoundSpawnDelegate(GameObject sound);
     public static SoundSpawnDelegate SoundSpawn;

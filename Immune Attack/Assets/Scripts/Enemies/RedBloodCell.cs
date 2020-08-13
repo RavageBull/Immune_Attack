@@ -12,11 +12,11 @@ public class RedBloodCell : MonoBehaviour
     Animator animator;
 
     [SerializeField]
-    GameObject trailPrefab;
+    GameObject trailPrefab = null;
     GameObject trail;
 
-    [SerializeField] AudioClip attackClip;
-    [SerializeField] AudioClip deathClip;
+    [SerializeField] AudioClip attackClip = null;
+    [SerializeField] AudioClip deathClip = null;
 
     AudioSource audioSource;
 

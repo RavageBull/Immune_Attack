@@ -21,7 +21,7 @@ public class BCell : MonoBehaviour
     Animator animator;
 
 
-    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] GameObject projectilePrefab = null;
     bool canAttack;
     float attackRange;
     float attackCooldown;

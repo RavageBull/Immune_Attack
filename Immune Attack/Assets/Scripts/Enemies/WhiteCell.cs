@@ -22,8 +22,8 @@ public class WhiteCell : MonoBehaviour
     float attackRange;
     float attackCooldown;
 
-    [SerializeField] AudioClip attackClip;
-    [SerializeField] AudioClip deathClip;
+    [SerializeField] AudioClip attackClip = null;
+    [SerializeField] AudioClip deathClip = null;
 
     AudioSource audioSource;
 

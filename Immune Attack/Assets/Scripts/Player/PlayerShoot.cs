@@ -25,8 +25,7 @@ public class PlayerShoot : MonoBehaviour
     public AudioClip shootSound;
 
     public GameObject bulletHole;
-    [SerializeField] GameObject spark; //temp
-    [SerializeField] Camera cam; //temp
+    [SerializeField] GameObject spark = null;
 
     //an event that fires when the player shoots so the UI manager can see it and animate the gun
     //should maybe tie the gun image to player instead of UI. Will look at later.

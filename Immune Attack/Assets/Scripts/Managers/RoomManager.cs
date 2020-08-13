@@ -9,8 +9,8 @@ public class RoomManager : MonoBehaviour
     public List<GameObject> enemyList;
 
     public Transform playerSpawn;
-    [SerializeField] Transform portalPoint;
-    [SerializeField] GameObject portalPrefab;
+    [SerializeField] Transform portalPoint = null;
+    [SerializeField] GameObject portalPrefab = null;
 
     public delegate void RoomSpawnDelegate(GameObject room);
     public static RoomSpawnDelegate RoomSpawn;

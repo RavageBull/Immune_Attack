@@ -47,13 +47,11 @@ public class UIManager : MonoBehaviour
 
                 ammoList[i].transform.SetParent(ammoLoc.transform);
 
-                ammoList[i].transform.position = new Vector3(ammoLoc.transform.position.x + 40 * i, ammoLoc.transform.position.y, ammoLoc.transform.position.z);
+                ammoList[i].transform.position = new Vector3(ammoLoc.transform.position.x + 30 * i, ammoLoc.transform.position.y, ammoLoc.transform.position.z);
             }
 
             UpdateHealth();
             UpdateAmmo();
-
-
         }
     }
 
