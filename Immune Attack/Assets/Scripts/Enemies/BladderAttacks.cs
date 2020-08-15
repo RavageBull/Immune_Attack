@@ -5,8 +5,9 @@ using UnityEditor;
 
 public class BladderAttacks : MonoBehaviour
 {
-   
-    /// Reflection Raycast stuff
+
+    //Reflection Raycast stuff
+    [Header("Reflection Settings")]
     public int maxReflectionCount = 5;
     public float maxStepDistance = 200;
     public GameObject lineRenderer;
@@ -14,11 +15,29 @@ public class BladderAttacks : MonoBehaviour
     public GameObject lazerStart;
     public int lrPos = 0;
     //Attack Stats
+    [Header("Attack Settings")]
     public int meteorCount = 20;
     public float meteorSpeed;
     public GameObject Meteor;
     public GameObject BladderBoss;
     public GameObject HomingProjectile;
+
+    //Rotation of Boss
+    [Header("Rotation Settings")]
+    [SerializeField] [Range(0f, 5f)] float lerpTime;
+    [SerializeField] Vector3[] myAngles;
+    int angleIndex;
+    int len;
+    float t = 0f;
+
+    //Lerp of Rising floor/Boss
+    [Header("Lerp Settings")]
+    public Vector3 startPosition;
+    public Vector3 endPosition;
+    public float distance = 30f;
+    public float lerpTime = 5f;
+    private float currentLerpTime = 0;
+
 
 
     // Start is called before the first frame update
@@ -27,6 +46,13 @@ public class BladderAttacks : MonoBehaviour
         lr = lineRenderer.GetComponent<LineRenderer>();
         lr.enabled = false;
         lr.useWorldSpace = true;
+
+        //Rotation stuff
+        len = myAngles.Length;
+
+        //LerpStuff
+        startPosition = transform.position;
+        endPosition = transform.position + Vector3.up * distance;
     }
 
     // Update is called once per frame
@@ -37,6 +63,25 @@ public class BladderAttacks : MonoBehaviour
             StartCoroutine(MeteorShower());
             lr.enabled = true;
         }
+
+        //Rotation stuff
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(myAngles[angleIndex]), lerpTime * Time.deltaTime);
+        t = Mathf.Lerp(t, 1f, lerpTime * Time.deltaTime);
+        if (t>.9f)
+        {
+            t = 0f;
+            angleIndex = Random.Range(0, len - 1);
+        }
+
+        //LerpStuff
+        currentLerpTime += Time.deltaTime;
+        if(currentLerpTime >= lerpTime)
+        {
+            currentLerpTime = lerpTime;
+        }
+
+        float Perc = currentLerpTime / lerpTime;
+        transform.position = Vector3.Lerp(startPosition, endPosition, Perc);
     }
 
     IEnumerator MeteorShower()
