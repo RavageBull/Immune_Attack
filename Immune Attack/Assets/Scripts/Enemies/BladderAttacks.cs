@@ -21,6 +21,8 @@ public class BladderAttacks : MonoBehaviour
     public GameObject Meteor;
     public GameObject BladderBoss;
     public GameObject HomingProjectile;
+    public GameObject Geyser;
+    public ParticleSystem geyserParticle;
 
     //Rotation of Boss
     [Header("Rotation Settings")]
@@ -48,6 +50,8 @@ public class BladderAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Strafe initiated
+        StartCoroutine(Strafe());
         lr = lineRenderer.GetComponent<LineRenderer>();
         lr.enabled = false;
         lr.useWorldSpace = true;
@@ -136,6 +140,43 @@ public class BladderAttacks : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    IEnumerator Geysers()
+    {
+
+        //PLAY PARTICLE EFFECT
+        geyserParticle.Play();
+        yield return new WaitForSeconds(2f);
+        var geyser = Instantiate(Geyser, transform.position, Quaternion.identity);
+        //var rb = projectile.GetComponent<Rigidbody>();
+        //rb.AddForce(transform.up * meteorSpeed);
+        Destroy(Geyser, 3f);
+
+        //PUT THIS IN NEW SCRIPT ATTACKED TO GEYSER on UPDATe()//*
+        /*
+          
+        //
+        
+        public Vector3 startScale
+        public Vector3 endScale = startScale * 10;
+
+        //(start)
+        startScale = transform.localScale;
+        endScale = startScale * 10;
+
+        //(update)
+        currentLerpTime += Time.deltaTime;
+        if (currentLerpTime >= lerpTime)
+        {
+            currentLerpTime = lerpTime;
+        }
+
+        float Perc = currentLerpTime / lerpTime;
+        //Lerps in y direction Only
+        localScale = Vector3.Lerp(startScale.y, endScale.y, Perc);
+        */
+
     }
 
     //Left and right Movement
