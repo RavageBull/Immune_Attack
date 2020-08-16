@@ -38,6 +38,11 @@ public class BladderAttacks : MonoBehaviour
     public float lerpTime = 5f;
     private float currentLerpTime = 0;
 
+    //Boss strafe
+    [Header("Strage Settings")]
+    public float thrust;
+    public int strafeDir = 0;
+    public float strafeTime = 5f;
 
 
     // Start is called before the first frame update
@@ -81,7 +86,8 @@ public class BladderAttacks : MonoBehaviour
         }
 
         float Perc = currentLerpTime / lerpTime;
-        transform.position = Vector3.Lerp(startPosition, endPosition, Perc);
+        //Lerps in y direction Only
+        transform.position = Vector3.Lerp(startPosition.y, endPosition.y, Perc);
     }
 
     IEnumerator MeteorShower()
@@ -104,8 +110,6 @@ public class BladderAttacks : MonoBehaviour
             rb2.AddForce(transform.up * -meteorSpeed);
             //Destroy(projectile2, 2f);
         }
-
-
 
         yield return null;
     }
@@ -131,38 +135,33 @@ public class BladderAttacks : MonoBehaviour
             Destroy(projectile2, 2f);
         }
 
-
-
-
-
         yield return null;
     }
 
+    //Left and right Movement
+    IEnumerator Strafe()
+    {
+        yield return new WaitForSeconds(strafeTime);
 
+        if (strafeDir % 2 == 0)
+        {
+            if (strafeDir == 0)
+            {
+                rb.AddRelativeForce(Vector3.left * thrust/2);
+            }
 
+            rb.AddRelativeForce(Vector3.left * thrust);
+        }
+        else if (strafeDir % 2 != 0)
+        {
+            rb.AddRelativeForce(Vector3.right * thrust);
+        }
 
+        var rb = GetComponent<Rigidbody>();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        strafeDir++;
+        StartCoroutine(Strafe());
+    }
 
 
     /// <summary>
