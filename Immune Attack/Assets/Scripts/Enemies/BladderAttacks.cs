@@ -29,8 +29,9 @@ public class BladderAttacks : MonoBehaviour
     [SerializeField] [Range(0f, 5f)] float lerpTime2;
     [SerializeField] Vector3[] myAngles;
     int angleIndex;
-    int len;
+    public int len;
     float t = 0f;
+    int x = 0;
 
     //Lerp of Rising floor/Boss
     [Header("Lerp Settings")]
@@ -67,6 +68,9 @@ public class BladderAttacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        lr.SetPosition(0, lazerStart.transform.position);
+        //Testing
         if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(MeteorShower());
@@ -78,11 +82,20 @@ public class BladderAttacks : MonoBehaviour
         t = Mathf.Lerp(t, 1f, lerpTime2 * Time.deltaTime);
         if (t>.9f)
         {
+            x++;
             t = 0f;
-            angleIndex = Random.Range(0, len - 1);
+            if (x%2==0)
+            {
+                angleIndex = 0;
+            }
+            else if (x%2 != 0)
+            {
+                angleIndex = 1;
+            }
         }
 
         //LerpStuff
+        
         currentLerpTime += Time.deltaTime;
         if(currentLerpTime >= lerpTime)
         {
@@ -92,6 +105,7 @@ public class BladderAttacks : MonoBehaviour
         float Perc = currentLerpTime / lerpTime;
         //Lerps in y direction Only
         transform.position = Vector3.Lerp(startPosition, endPosition, Perc);
+        
     }
 
     IEnumerator MeteorShower()
@@ -183,25 +197,26 @@ public class BladderAttacks : MonoBehaviour
     IEnumerator Strafe()
     {
 
-        var rb = GetComponent<Rigidbody>();
+        var rb3 = GetComponent<Rigidbody>();
         yield return new WaitForSeconds(strafeTime);
 
         if (strafeDir % 2 == 0)
         {
             if (strafeDir == 0)
             {
-                rb.AddRelativeForce(Vector3.left * thrust/2);
+                rb3.AddRelativeForce(Vector3.left * thrust/2);
             }
 
-            rb.AddRelativeForce(Vector3.left * thrust);
+            rb3.AddRelativeForce(Vector3.left * thrust);
         }
         else if (strafeDir % 2 != 0)
         {
-            rb.AddRelativeForce(Vector3.right * thrust);
+            rb3.AddRelativeForce(Vector3.right * thrust);
         }
 
        
         strafeDir++;
+        Debug.Log("strafeDir is" + strafeDir);
         StartCoroutine(Strafe());
     }
 
@@ -212,11 +227,11 @@ public class BladderAttacks : MonoBehaviour
     void OnDrawGizmos()
     {      
         Handles.color = Color.red;
-        Handles.ArrowHandleCap(0, this.transform.position + this.transform.forward * 0.25f, this.transform.rotation, 0.5f, EventType.Repaint);
+        Handles.ArrowHandleCap(0, lazerStart.transform.position + lazerStart.transform.forward * 0.25f, lazerStart.transform.rotation, 0.5f, EventType.Repaint);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, 0.25f);
+        Gizmos.DrawWireSphere(lazerStart.transform.position, 0.25f);
 
-        DrawPredictedReflectionPattern(this.transform.position + this.transform.position + this.transform.forward * 0.75f, this.transform.forward, maxReflectionCount);
+        DrawPredictedReflectionPattern(lazerStart.transform.position + lazerStart.transform.forward * 0.75f, lazerStart.transform.forward, maxReflectionCount);
     }
 
 
