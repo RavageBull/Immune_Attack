@@ -22,11 +22,11 @@ public class BladderAttacks : MonoBehaviour
     public GameObject BladderBoss;
     public GameObject HomingProjectile;
     public GameObject Geyser;
-    public ParticleSystem geyserParticle;
+    //public ParticleSystem geyserParticle;
 
     //Rotation of Boss
     [Header("Rotation Settings")]
-    [SerializeField] [Range(0f, 5f)] float lerpTime;
+    [SerializeField] [Range(0f, 5f)] float lerpTime2;
     [SerializeField] Vector3[] myAngles;
     int angleIndex;
     int len;
@@ -74,8 +74,8 @@ public class BladderAttacks : MonoBehaviour
         }
 
         //Rotation stuff
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(myAngles[angleIndex]), lerpTime * Time.deltaTime);
-        t = Mathf.Lerp(t, 1f, lerpTime * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(myAngles[angleIndex]), lerpTime2 * Time.deltaTime);
+        t = Mathf.Lerp(t, 1f, lerpTime2 * Time.deltaTime);
         if (t>.9f)
         {
             t = 0f;
@@ -91,7 +91,7 @@ public class BladderAttacks : MonoBehaviour
 
         float Perc = currentLerpTime / lerpTime;
         //Lerps in y direction Only
-        transform.position = Vector3.Lerp(startPosition.y, endPosition.y, Perc);
+        transform.position = Vector3.Lerp(startPosition, endPosition, Perc);
     }
 
     IEnumerator MeteorShower()
@@ -146,12 +146,12 @@ public class BladderAttacks : MonoBehaviour
     {
 
         //PLAY PARTICLE EFFECT
-        geyserParticle.Play();
-        yield return new WaitForSeconds(2f);
-        var geyser = Instantiate(Geyser, transform.position, Quaternion.identity);
+        //geyserParticle.Play();
+        //yield return new WaitForSeconds(2f);
+        // var geyser = Instantiate(Geyser, transform.position, Quaternion.identity);
         //var rb = projectile.GetComponent<Rigidbody>();
         //rb.AddForce(transform.up * meteorSpeed);
-        Destroy(Geyser, 3f);
+        // Destroy(Geyser, 3f);
 
         //PUT THIS IN NEW SCRIPT ATTACKED TO GEYSER on UPDATe()//*
         /*
@@ -176,12 +176,14 @@ public class BladderAttacks : MonoBehaviour
         //Lerps in y direction Only
         localScale = Vector3.Lerp(startScale.y, endScale.y, Perc);
         */
-
+        yield return null;
     }
 
     //Left and right Movement
     IEnumerator Strafe()
     {
+
+        var rb = GetComponent<Rigidbody>();
         yield return new WaitForSeconds(strafeTime);
 
         if (strafeDir % 2 == 0)
@@ -198,8 +200,7 @@ public class BladderAttacks : MonoBehaviour
             rb.AddRelativeForce(Vector3.right * thrust);
         }
 
-        var rb = GetComponent<Rigidbody>();
-
+       
         strafeDir++;
         StartCoroutine(Strafe());
     }
