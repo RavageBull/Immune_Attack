@@ -73,7 +73,8 @@ public class BladderAttacks : MonoBehaviour
         //Testing
         if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(MeteorShower());
+            StartCoroutine(Geysers());
+            //if we want ot use line renederer
             lr.enabled = true;
         }
 
@@ -154,42 +155,28 @@ public class BladderAttacks : MonoBehaviour
         }
 
         yield return null;
+        //Can make this happen continuously by writing in StartCoroutine(ConstantMeteorShower()); 
+        //here and also in start()
     }
 
     IEnumerator Geysers()
     {
 
         //PLAY PARTICLE EFFECT
+        var geyserSpot = GameManager.manager.player.transform.position;
         //geyserParticle.Play();
-        //yield return new WaitForSeconds(2f);
-        // var geyser = Instantiate(Geyser, transform.position, Quaternion.identity);
-        //var rb = projectile.GetComponent<Rigidbody>();
-        //rb.AddForce(transform.up * meteorSpeed);
-        // Destroy(Geyser, 3f);
+        yield return new WaitForSeconds(2f);
+        var geyser = Instantiate(Geyser, geyserSpot, Quaternion.identity);
+        var rb5 = geyser.GetComponent<Rigidbody>();
+        rb5.AddForce(transform.up * meteorSpeed);
+        Destroy(Geyser, 3f);
+        yield return null;
+    }
 
-        //PUT THIS IN NEW SCRIPT ATTACKED TO GEYSER on UPDATe()//*
-        /*
-          
-        //
-        
-        public Vector3 startScale
-        public Vector3 endScale = startScale * 10;
+    IEnumerator PissBeam()
+    {
 
-        //(start)
-        startScale = transform.localScale;
-        endScale = startScale * 10;
 
-        //(update)
-        currentLerpTime += Time.deltaTime;
-        if (currentLerpTime >= lerpTime)
-        {
-            currentLerpTime = lerpTime;
-        }
-
-        float Perc = currentLerpTime / lerpTime;
-        //Lerps in y direction Only
-        localScale = Vector3.Lerp(startScale.y, endScale.y, Perc);
-        */
         yield return null;
     }
 

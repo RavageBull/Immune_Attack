@@ -165,7 +165,7 @@ MonoBehaviour:
   Meteor: {fileID: 3177728472861683605, guid: dfc331004846cf94b859ea08ed86b778, type: 3}
   BladderBoss: {fileID: 378624942}
   HomingProjectile: {fileID: 0}
-  Geyser: {fileID: 1644024679}
+  Geyser: {fileID: 0}
   lerpTime2: 0.38
   myAngles:
   - {x: 0, y: 30, z: 0}
@@ -772,99 +772,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18b473fdd1c93ab4db638acf847aede1, type: 3}
---- !u!1 &1644024679
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1644024683}
-  - component: {fileID: 1644024682}
-  - component: {fileID: 1644024681}
-  - component: {fileID: 1644024680}
-  m_Layer: 0
-  m_Name: Geyser
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!136 &1644024680
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644024679}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!23 &1644024681
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644024679}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1644024682
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644024679}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1644024683
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644024679}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.410527, y: 6.9058757, z: 1.8630868}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1655551499 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1004818215587367116, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
@@ -1308,6 +1215,46 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[5].x
       value: 13.721447
       objectReference: {fileID: 0}
+    - target: {fileID: 1004818215587367115, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: m_Positions.Array.data[2].y
+      value: 13.197716
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004818215587367115, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: m_Positions.Array.data[2].z
+      value: 41.496937
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004818215587367115, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: m_Positions.Array.data[3].y
+      value: 13.197717
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004818215587367115, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: m_Positions.Array.data[3].z
+      value: -32.596935
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004818215587367115, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: m_Positions.Array.data[4].y
+      value: 13.197716
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004818215587367115, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: m_Positions.Array.data[4].z
+      value: 41.496937
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004818215587367115, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: m_Positions.Array.data[5].y
+      value: 13.197717
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004818215587367115, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: m_Positions.Array.data[5].z
+      value: -32.596935
+      objectReference: {fileID: 0}
     - target: {fileID: 1431919363183031798, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
         type: 3}
       propertyPath: BladderBoss
@@ -1317,7 +1264,8 @@ PrefabInstance:
         type: 3}
       propertyPath: Geyser
       value: 
-      objectReference: {fileID: 1644024679}
+      objectReference: {fileID: 497578890239060183, guid: 07dc7aa95e094c6429b47bd379c10f9b,
+        type: 3}
     - target: {fileID: 1431919363183031798, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
         type: 3}
       propertyPath: distance
