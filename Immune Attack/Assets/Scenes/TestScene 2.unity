@@ -379,7 +379,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-779324
+  m_Name: pb_Mesh-107216
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -715,7 +715,7 @@ PrefabInstance:
     - target: {fileID: 564912403483111861, guid: 219d2c10fbe13744db0a3a084c440965,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.71
+      value: 4.47
       objectReference: {fileID: 0}
     - target: {fileID: 564912403483111861, guid: 219d2c10fbe13744db0a3a084c440965,
         type: 3}
@@ -725,7 +725,7 @@ PrefabInstance:
     - target: {fileID: 564912403483111861, guid: 219d2c10fbe13744db0a3a084c440965,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -49.8
       objectReference: {fileID: 0}
     - target: {fileID: 564912404222493408, guid: 219d2c10fbe13744db0a3a084c440965,
         type: 3}
@@ -807,6 +807,12 @@ PrefabInstance:
       propertyPath: enemyList.Array.data[2]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 564912404222493411, guid: 219d2c10fbe13744db0a3a084c440965,
+        type: 3}
+      propertyPath: portalPrefab
+      value: 
+      objectReference: {fileID: 6511240816075157252, guid: 935178e2a90c7624f8725afd7dbe3558,
+        type: 3}
     - target: {fileID: 874928981194719678, guid: 219d2c10fbe13744db0a3a084c440965,
         type: 3}
       propertyPath: m_LocalPosition.y
