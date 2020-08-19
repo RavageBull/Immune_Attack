@@ -21,9 +21,14 @@ public class BladderAttacks : MonoBehaviour
     public GameObject Meteor;
     public GameObject BladderBoss;
     public GameObject HomingProjectile;
+
     public GameObject Geyser;
     public int geyserNumber;
     public float geyserSpeed;
+
+    public GameObject PissBeam;
+    public float pissSpeed;
+    public int pissNumber;
     //public ParticleSystem geyserParticle;
 
     //Rotation of Boss
@@ -111,7 +116,12 @@ public class BladderAttacks : MonoBehaviour
         
     }
 
-    IEnumerator MeteorShower()
+    void MeteorShower()
+    {
+        StartCoroutine(MeteorShowerC());
+    }
+
+    IEnumerator MeteorShowerC()
     {
         for (int i = 0; i <= meteorCount; i++)
         {
@@ -135,8 +145,12 @@ public class BladderAttacks : MonoBehaviour
         yield return null;
     }
 
+    void ConstantMeteorShower()
+    {
+        StartCoroutine(ConstantMeteorShowerC());
+    }
 
-    IEnumerator ConstantMeteorShower()
+    IEnumerator ConstantMeteorShowerC()
     {
         for (int i = 0; i <= meteorCount*2; i++)
         {
@@ -161,7 +175,12 @@ public class BladderAttacks : MonoBehaviour
         //here and also in start()
     }
 
-    IEnumerator Geysers()
+    void Geysers()
+    {
+        StartCoroutine(GeysersC());
+    }
+
+    IEnumerator GeysersC()
     {
 
         //PLAY PARTICLE EFFECT
@@ -177,19 +196,29 @@ public class BladderAttacks : MonoBehaviour
             Destroy(geyser, 5f);
             yield return new WaitForSeconds(0.1f);
         }
-
-        
         yield return null;
     }
 
-    IEnumerator PissBeam()
+    void PissBeam()
     {
+        StartCoroutine(PissBeamC());
+    }
 
-
+    IEnumerator PissBeamC()
+    {
+        for (int i = 0; i <= pissNumber; i++)
+        {
+            var pissBeam = Instantiate(PissBeam, lazerStart.transform.position, lazerStart.transform.forward);
+            var rb6 = pissBeam.GetComponent<Rigidbody>();
+            rb6.AddForce(transform.forward * pissSpeed);
+            Destroy(pissBeam, 5f);
+            yield return new WaitForSeconds(0.1f);
+        }
         yield return null;
     }
 
     //Left and right Movement
+    //THIS DOENST WORK COZ IM LERPING MOVEMENT.
     IEnumerator Strafe()
     {
 
