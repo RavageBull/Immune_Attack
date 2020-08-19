@@ -22,6 +22,8 @@ public class BladderAttacks : MonoBehaviour
     public GameObject BladderBoss;
     public GameObject HomingProjectile;
     public GameObject Geyser;
+    public int geyserNumber;
+    public float geyserSpeed;
     //public ParticleSystem geyserParticle;
 
     //Rotation of Boss
@@ -166,10 +168,17 @@ public class BladderAttacks : MonoBehaviour
         var geyserSpot = GameManager.manager.player.transform.position;
         //geyserParticle.Play();
         yield return new WaitForSeconds(2f);
-        var geyser = Instantiate(Geyser, geyserSpot, Quaternion.identity);
-        var rb5 = geyser.GetComponent<Rigidbody>();
-        rb5.AddForce(transform.up * meteorSpeed);
-        Destroy(Geyser, 3f);
+
+        for (int i = 0; i <= geyserNumber; i++)
+        {
+            var geyser = Instantiate(Geyser, geyserSpot + new Vector3(Random.Range(0, 5), -10, Random.Range(0, 5)), Quaternion.identity);
+            var rb5 = geyser.GetComponent<Rigidbody>();
+            rb5.AddForce(transform.up * geyserSpeed);
+            Destroy(geyser, 5f);
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        
         yield return null;
     }
 

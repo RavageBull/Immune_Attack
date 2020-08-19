@@ -166,6 +166,8 @@ MonoBehaviour:
   BladderBoss: {fileID: 378624942}
   HomingProjectile: {fileID: 0}
   Geyser: {fileID: 0}
+  geyserNumber: 0
+  geyserSpeed: 0
   lerpTime2: 0.38
   myAngles:
   - {x: 0, y: 30, z: 0}
@@ -1255,6 +1257,11 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[5].z
       value: -32.596935
       objectReference: {fileID: 0}
+    - target: {fileID: 1431919363183031796, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1431919363183031798, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
         type: 3}
       propertyPath: BladderBoss
@@ -1290,6 +1297,16 @@ PrefabInstance:
         type: 3}
       propertyPath: lerpTime2
       value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431919363183031798, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: geyserNumber
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431919363183031798, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
+        type: 3}
+      propertyPath: geyserSpeed
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1431919363183031799, guid: 4f61b0ebc136b1d4c8482ab03f0f41ee,
         type: 3}

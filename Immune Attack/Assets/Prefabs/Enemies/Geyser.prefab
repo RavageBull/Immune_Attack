@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 497578890239060187}
   - component: {fileID: 497578890239060186}
   - component: {fileID: 497578890239060185}
-  - component: {fileID: 497578890239060184}
-  - component: {fileID: 497578890239060188}
-  m_Layer: 0
+  - component: {fileID: 6300423363920355580}
+  - component: {fileID: 5929936500064467066}
+  m_Layer: 10
   m_Name: Geyser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497578890239060183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.05, y: 4.07, z: 1.8630868}
-  m_LocalScale: {x: 5, y: 0.1, z: 5}
+  m_LocalPosition: {x: 0, y: 0.0079732, z: 0.00000041603}
+  m_LocalScale: {x: 6, y: 1, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497578890239060183}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &497578890239060185
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80,32 +80,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &497578890239060184
-CapsuleCollider:
+--- !u!54 &6300423363920355580
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497578890239060183}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &5929936500064467066
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497578890239060183}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &497578890239060188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497578890239060183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e99f6904732c6c4d9e68615db005818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpTime: 0.2
-  startScale: {x: 0, y: 0, z: 0}
-  endScale: {x: 5, y: 10, z: 5}
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 0.88966197, z: 1.0000002}
+  m_Center: {x: 0.00000004661471, y: 0.08307274, z: -0.00000009322942}
