@@ -80,7 +80,7 @@ public class BladderAttacks : MonoBehaviour
         //Testing
         if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(Geysers());
+            PissBeamAttack();
             //if we want ot use line renederer
             lr.enabled = true;
         }
@@ -199,20 +199,20 @@ public class BladderAttacks : MonoBehaviour
         yield return null;
     }
 
-    void PissBeam()
+    void PissBeamAttack()
     {
-        StartCoroutine(PissBeamC());
+        StartCoroutine(PissBeamAttackC());
     }
 
-    IEnumerator PissBeamC()
+    IEnumerator PissBeamAttackC()
     {
         for (int i = 0; i <= pissNumber; i++)
         {
-            var pissBeam = Instantiate(PissBeam, lazerStart.transform.position, lazerStart.transform.forward);
+            var pissBeam = Instantiate(PissBeam, lazerStart.transform.position, Quaternion.identity);
             var rb6 = pissBeam.GetComponent<Rigidbody>();
             rb6.AddForce(transform.forward * pissSpeed);
             Destroy(pissBeam, 5f);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
         yield return null;
     }
