@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     bool isDashing;
     bool canDash;
     Vector3 dashDir;
-    float dashSpeed;
-    float dashCooldown;
+    public float dashSpeed;
+    public float dashCooldown;
 
     // Start is called before the first frame update
     void Start()

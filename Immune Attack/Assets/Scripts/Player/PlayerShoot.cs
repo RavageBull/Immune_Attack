@@ -9,7 +9,7 @@ public class PlayerShoot : MonoBehaviour
 
     //Base Gun Stats//
     public int bulletsMag = 20;
-    public int bulletsTotal = 300;
+    //public int bulletsTotal = 300; no longer needed
     public float gunfireRate = 0.1f;
     public float fireTimer;
     public int gunATK = 10;
@@ -88,13 +88,12 @@ public class PlayerShoot : MonoBehaviour
 
         RaycastHit hit;
 
-        //if (Physics.Raycast(startingshootPoint.position, startingshootPoint.transform.forward, out hit, gunRange))
         if (Physics.Raycast(startingshootPoint.position, startingshootPoint.transform.forward, out hit, gunRange))
         {
             Debug.Log(hit.transform.name + " was hit!");
 
             GameObject particle = Instantiate(spark, hit.point, Quaternion.identity);
-            Destroy(particle, 1);
+            Destroy(particle, 0.5f);
 
             if (hit.transform.tag != "Enemy")
             {
@@ -161,7 +160,7 @@ public class PlayerShoot : MonoBehaviour
     }
 
     //currently obsolete
-    private void Reload()
+    /*private void Reload()
     {
         if(bulletsTotal <= 0)
         {
@@ -181,6 +180,6 @@ public class PlayerShoot : MonoBehaviour
 
         bulletsTotal -= bulletsTaken;
         currentBullets += bulletsTaken;
-    }
+    }*/
 
 }

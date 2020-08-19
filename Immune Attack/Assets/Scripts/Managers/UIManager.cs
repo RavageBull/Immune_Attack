@@ -23,20 +23,26 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.DamageTaken += UpdateHealth;
-        Player.DamageTaken += FlashRed;
+        Player.Healed += UpdateHealth;
+        Player.Damaged += UpdateHealth;
+        Player.Damaged += FlashRed;
         PlayerShoot.AmmoUpdate += UpdateAmmo;
         GameManager.FinishLoading += Load;
         PlayerShoot.ShootAni += ShootAnimation;
+        Powerups.HealthUpdate += UpdateHealth;
+        Powerups.AmmoUpdate += UpdateAmmo;
     }
 
     private void OnDisable()
     {
-        Player.DamageTaken -= UpdateHealth;
-        Player.DamageTaken -= FlashRed;
+        Player.Healed -= UpdateHealth;
+        Player.Damaged -= UpdateHealth;
+        Player.Damaged -= FlashRed;
         PlayerShoot.AmmoUpdate -= UpdateAmmo;
         GameManager.FinishLoading -= Load;
         PlayerShoot.ShootAni -= ShootAnimation;
+        Powerups.HealthUpdate -= UpdateHealth;
+        Powerups.AmmoUpdate -= UpdateAmmo;
     }
 
     private void Start()

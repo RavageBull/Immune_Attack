@@ -6,9 +6,10 @@ public class Player : MonoBehaviour
 {
     public Stats stats;
 
-    //event for when the player takes damage
-    public delegate void DamageDelegate();
-    public static DamageDelegate DamageTaken;
+    //event for when the player's health changes
+    public delegate void HealthDelegate();
+    public static HealthDelegate Healed;
+    public static HealthDelegate Damaged;
 
     //event for when the player is created so the GameManager take reference this object
     public delegate void PlayerSpawnDelegate(GameObject player);
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         PlayerSpawn(gameObject);
+        stats = GetComponent<Stats>();
     }
 
     // Update is called once per frame
@@ -40,7 +42,18 @@ public class Player : MonoBehaviour
     {
         stats.health -= damage;
 
-        //DamageTaken event fires whenever this function is triggered
-        DamageTaken();
+        //event fires whenever this function is triggered
+        Damaged();
+    }
+
+    public IEnumerator Regen()
+    {
+        while (stats.regen > 0)
+        {
+            yield return new WaitForSeconds(stats.regenDelay);
+            stats.health = Mathf.Clamp(stats.health += stats.regen, 0, 100);
+            Healed();
+        }
+
     }
 }
