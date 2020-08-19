@@ -16,12 +16,15 @@ public class UIManager : MonoBehaviour
     public Image ammo;
     public Transform ammoLoc;
     public Image ammoIcon;
-
     public List<Image> ammoList = new List<Image>();
+
+    Animator animator;
+    public Image fade;
 
     private void OnEnable()
     {
         Player.DamageTaken += UpdateHealth;
+        Player.DamageTaken += FlashRed;
         PlayerShoot.AmmoUpdate += UpdateAmmo;
         GameManager.FinishLoading += Load;
         PlayerShoot.ShootAni += ShootAnimation;
@@ -30,9 +33,16 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         Player.DamageTaken -= UpdateHealth;
+        Player.DamageTaken -= FlashRed;
         PlayerShoot.AmmoUpdate -= UpdateAmmo;
         GameManager.FinishLoading -= Load;
         PlayerShoot.ShootAni -= ShootAnimation;
+    }
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        animator.SetTrigger("ToBlack");
     }
 
     void Load()
@@ -52,6 +62,8 @@ public class UIManager : MonoBehaviour
 
             UpdateHealth();
             UpdateAmmo();
+
+            animator.SetTrigger("Normal");
         }
     }
 
@@ -63,6 +75,11 @@ public class UIManager : MonoBehaviour
         {
             pivot.localScale = new Vector3(player.GetComponent<Stats>().health / 100, 1, 1);
         }
+    }
+
+    void FlashRed()
+    {
+        animator.SetTrigger("Damaged");
     }
 
     void ShootAnimation()
