@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359620983927196115}
-  m_LocalRotation: {x: -0, y: -0.2581608, z: -0, w: 0.966102}
-  m_LocalPosition: {x: 41.588703, y: 2.31, z: 32.68332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.0581, y: 4.0581, z: 4.0581}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -29.922, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &359620983927196118
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -108,4 +108,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupParticle: {fileID: 0}
+  powerUpSound: {fileID: 8318841625312645104, guid: f891c61bd911b4542912c9a6a4f676d6,
+    type: 3}
   powerUpType: 0
+  powerUpSprites:
+    health: {fileID: 21300000, guid: c99840d39d62c574e9cfb41ab4553227, type: 3}
+    ammo: {fileID: 21300000, guid: eaad494ad96bbca4081312f739fccbcb, type: 3}
+    regen: {fileID: 21300000, guid: c4ba51199eefc494b80e18939b27542d, type: 3}
+    moveSpeed: {fileID: 21300000, guid: 721b3f12d5e3f654a9e35909e3f87557, type: 3}
+    dashBuff: {fileID: 21300000, guid: 27ec03861ce1df34ca0cc816642a2ffc, type: 3}
+    jumpUp: {fileID: 21300000, guid: 44911c5840d571d4fbe62e6dd1223f40, type: 3}
+    damageUp: {fileID: 21300000, guid: 1dd64dc6f2646c54092b820fb581059c, type: 3}

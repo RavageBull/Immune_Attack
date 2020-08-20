@@ -19,7 +19,8 @@ public class UIManager : MonoBehaviour
     public List<Image> ammoList = new List<Image>();
 
     Animator animator;
-    public Image fade;
+
+    public Text powerUpText;
 
     private void OnEnable()
     {
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
         PlayerShoot.ShootAni += ShootAnimation;
         Powerups.HealthUpdate += UpdateHealth;
         Powerups.AmmoUpdate += UpdateAmmo;
+        Powerups.PowerUpPicked += PowerUpText;
     }
 
     private void OnDisable()
@@ -43,12 +45,15 @@ public class UIManager : MonoBehaviour
         PlayerShoot.ShootAni -= ShootAnimation;
         Powerups.HealthUpdate -= UpdateHealth;
         Powerups.AmmoUpdate -= UpdateAmmo;
+        Powerups.PowerUpPicked -= PowerUpText;
     }
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         animator.SetTrigger("ToBlack");
+
+        powerUpText.color = new Color(powerUpText.color.r, powerUpText.color.g, powerUpText.color.b, 0);
     }
 
     void Load()
@@ -108,6 +113,25 @@ public class UIManager : MonoBehaviour
                     ammoList[i].enabled = false;
                 }
             }
+        }
+    }
+
+    void PowerUpText(string text)
+    {
+        powerUpText.text = text;
+        powerUpText.rectTransform.localPosition = Vector3.zero;
+        powerUpText.color = new Color(powerUpText.color.r, powerUpText.color.g, powerUpText.color.b, 1);
+        StopCoroutine("PowerUpFade");
+        StartCoroutine("PowerUpFade");
+    }
+
+    IEnumerator PowerUpFade()
+    {
+        while(powerUpText.color.a > 0)
+        {
+            powerUpText.color = new Color(powerUpText.color.r, powerUpText.color.g, powerUpText.color.b, powerUpText.color.a - 0.05f);
+            powerUpText.rectTransform.localPosition = new Vector3(powerUpText.rectTransform.localPosition.x, powerUpText.rectTransform.localPosition.y + 10f, powerUpText.rectTransform.localPosition.z);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

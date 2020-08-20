@@ -1,20 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
+[ExecuteInEditMode]
 public class Powerups : MonoBehaviour
 {
 
-    public GameObject powerupParticle;
-
+    public GameObject powerupParticle; //not sure what this is for
+    GameObject player = null;
     Player stats1;
     PlayerController stats2;
     PlayerShoot stats3;
     FirstPersonController stats4;
 
-    GameObject player = null;
-    
+    [SerializeField] GameObject powerUpSound;
+
+    [System.Serializable]
+    public struct PowerUpSprites
+    {
+        public Sprite health;
+        public Sprite ammo;
+        public Sprite regen;
+        public Sprite moveSpeed;
+        public Sprite dashBuff;
+        public Sprite jumpUp;
+        public Sprite damageUp;
+    }
 
     public enum PowerUpType
     {
@@ -26,16 +39,20 @@ public class Powerups : MonoBehaviour
         Regen,      //passive health regen
         MoveSpeed,  //increased movement speed
         DashBuff,   //improved dash distance and cooldown
-        JumpUp, //extra jump
+        JumpUp,     //extra jump
         DamageUp,   //extra damage
     }
 
     public PowerUpType powerUpType;
+    public PowerUpSprites powerUpSprites;
 
     //events for when health and ammo powerups are picked up so UI knows to update accordingly
     public delegate void UpdateDelegate();
-    public static UpdateDelegate HealthUpdate;
-    public static UpdateDelegate AmmoUpdate;
+    public static event UpdateDelegate HealthUpdate;
+    public static event UpdateDelegate AmmoUpdate;
+
+    public delegate void PowerUpDelegate(string text);
+    public static event PowerUpDelegate PowerUpPicked;
 
 
     //subscribes to the event when the GameManager finishes collecting and assigning some data
@@ -49,30 +66,33 @@ public class Powerups : MonoBehaviour
         GameManager.FinishLoading -= Load;
     }
 
-    /*delegate void PowerUpFunctions();
-    IEnumerator PowerUp()
+    void Update()
     {
-        Instantiate(powerupParticle, transform.position, transform.rotation);
-        //CreateList
-        List<PowerUpFunctions> getPower = new List<PowerUpFunctions>();
-        getPower.Add(Health);
-        getPower.Add(MoveSpeed);
-        getPower.Add(Regen);
-        getPower.Add(DashBuff);
-        getPower.Add(TripleJump);
-        getPower.Add(DamageUp);
-        
-
-        //Calls functions
-        //Can be Random.Range
-        //Maybe Remove the powerup from the list after its selected once
-        //Or have it multiplicative/Additive/Stackable
-        getPower[Random.Range(0, getPower.Count)]();
-
-        Destroy(gameObject);
-
-        yield return null;
-    }*/
+        switch (powerUpType)
+        {
+            case PowerUpType.Health:
+                GetComponent<SpriteRenderer>().sprite = powerUpSprites.health;
+                break;
+            case PowerUpType.Ammo:
+                GetComponent<SpriteRenderer>().sprite = powerUpSprites.ammo;
+                break;
+            case PowerUpType.Regen:
+                GetComponent<SpriteRenderer>().sprite = powerUpSprites.regen;
+                break;
+            case PowerUpType.MoveSpeed:
+                GetComponent<SpriteRenderer>().sprite = powerUpSprites.moveSpeed;
+                break;
+            case PowerUpType.DashBuff:
+                GetComponent<SpriteRenderer>().sprite = powerUpSprites.dashBuff;
+                break;
+            case PowerUpType.JumpUp:
+                GetComponent<SpriteRenderer>().sprite = powerUpSprites.jumpUp;
+                break;
+            case PowerUpType.DamageUp:
+                GetComponent<SpriteRenderer>().sprite = powerUpSprites.damageUp;
+                break;
+        }
+    }
 
     //when the GameManager finishes collecting data
     void Load()
@@ -87,54 +107,45 @@ public class Powerups : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*if(other.CompareTag("Player"))
-        {
-            StartCoroutine(PowerUp());
-        }*/
-
         if (other.GetComponent<Player>())
         {
             switch (powerUpType)
             {
                 case PowerUpType.Health:
                     Health();
+                    PowerUpPicked("HEALED!");
                     break;
                 case PowerUpType.Ammo:
                     Ammo();
+                    PowerUpPicked("AMMO REFRESH!");
                     break;
                 case PowerUpType.Regen:
                     Regen();
+                    PowerUpPicked("HEALTH REGENERATION UP!");
                     break;
                 case PowerUpType.MoveSpeed:
                     MoveSpeed();
+                    PowerUpPicked("MOVEMENT SPEED UP!");
                     break;
                 case PowerUpType.DashBuff:
+                    PowerUpPicked("DASH IMPROVED!");
                     DashBuff();
                     break;
                 case PowerUpType.JumpUp:
                     JumpUp();
+                    PowerUpPicked("EXTRA JUMP!");
                     break;
                 case PowerUpType.DamageUp:
                     DamageUp();
+                    PowerUpPicked("DAMAGE INCREASED!");
                     break;
             }
 
+            GameObject obj = Instantiate(powerUpSound, transform.position, Quaternion.identity);
+            Destroy(obj, 1);
             Destroy(this.gameObject);
         }
     }
-
-    ///////////////////////////////////////////////////////
-    ///////////////////////PowerUps////////////////////////
-    ///////////////////////////////////////////////////////
-        /// <summary>
-        /// Healthup
-        /// MoveSpeed
-        /// FireRate
-        /// DashBuff
-        /// PassiveHPRegen
-        /// TripleJump
-        /// DamageUp
-        /// </summary>
  
     public void Health()
     {

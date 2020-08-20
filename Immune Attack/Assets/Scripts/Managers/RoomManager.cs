@@ -9,8 +9,7 @@ public class RoomManager : MonoBehaviour
     public List<GameObject> enemyList;
 
     public Transform playerSpawn;
-    [SerializeField] Transform portalPoint = null;
-    [SerializeField] GameObject portalPrefab = null;
+    [SerializeField] GameObject portalDoor = null;
 
     public delegate void RoomSpawnDelegate(GameObject room);
     public static RoomSpawnDelegate RoomSpawn;
@@ -28,12 +27,17 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //finds all enemies in current room and adds to a list
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         for (int i = 0; i < enemies.Length; i++)
         {
             enemyList.Add(enemies[i]);
         }
+
+        //disables portal door
+        portalDoor.SetActive(false);
+
 
         //sends an event when spawned which should notify the game manager who the current room manager is
         RoomSpawn(gameObject);
@@ -53,6 +57,7 @@ public class RoomManager : MonoBehaviour
 
     void SpawnPortal()
     {
-        Instantiate(portalPrefab, portalPoint.position, Quaternion.identity);
+        //Instantiate(portalPrefab, portalPoint.position, Quaternion.identity);
+        portalDoor.SetActive(true);
     }
 }

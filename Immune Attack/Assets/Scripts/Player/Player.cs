@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public delegate void HealthDelegate();
     public static HealthDelegate Healed;
     public static HealthDelegate Damaged;
+    public static HealthDelegate Death;
 
     //event for when the player is created so the GameManager take reference this object
     public delegate void PlayerSpawnDelegate(GameObject player);
@@ -40,10 +41,15 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        stats.health -= damage;
+        stats.health = Mathf.Clamp(stats.health -= damage, 0, 100);
 
         //event fires whenever this function is triggered
         Damaged();
+
+        if (stats.health <= 0)
+        {
+            Death();
+        }    
     }
 
     public IEnumerator Regen()

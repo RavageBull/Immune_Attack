@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TESTPHILIP.unity
     guid: 9e015ed060eb04644b8b03377559ba6e
+  - enabled: 1
+    path: Assets/Scenes/DeathScene.unity
+    guid: e5ae4fcb8939335448ee76aba045a704
   m_configObjects: {}

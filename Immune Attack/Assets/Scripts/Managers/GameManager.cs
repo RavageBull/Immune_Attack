@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
+    [HideInInspector] public GameObject player;
 
-    public List<int> roomList;
+    //public List<int> roomList;
 
-    public GameObject player;
     GameObject room;
-    GameObject sound;
-
+    /*[HideInInspector]*/ public GameObject sound;
     bool isLoading;
+
+    [SerializeField] GameObject loadInSound = null;
 
     public delegate void FinishLoadingDelegate();
     public static FinishLoadingDelegate FinishLoading;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
         Player.PlayerSpawn += SetPlayer;
         RoomManager.RoomSpawn += SetRoom;
         SoundManager.SoundSpawn += SetSound;
+        Player.Death += PlayerDeath;
     }
 
     private void OnDisable()
@@ -34,16 +36,22 @@ public class GameManager : MonoBehaviour
         Player.PlayerSpawn -= SetPlayer;
         RoomManager.RoomSpawn -= SetRoom;
         SoundManager.SoundSpawn -= SetSound;
+        Player.Death -= PlayerDeath;
     }
 
     void Awake()
     {
-        if (manager == null) manager = this;
-        else Destroy(this.gameObject);
+        if (manager == null)
+        {
+            manager = this;
+            
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 
         DontDestroyOnLoad(this.gameObject);
-
-
     }
 
     //once a scene is loaded, we start to assign some values that need to be created
@@ -52,10 +60,16 @@ public class GameManager : MonoBehaviour
         room = null;
         isLoading = true;
         StartCoroutine("Loading");
+
+        if (SceneManager.GetActiveScene().buildIndex != 1)
+        {
+            GameObject obj = Instantiate(loadInSound, transform.position, Quaternion.identity);
+            Destroy(obj, 1);
+        }
     }
 
     //this loop waits for the room and player variables to be assigned and possible other important values
-    //after thiis finishes, a finish loading event occurs for other scripts to know
+    //after this finishes, a finish loading event occurs for other scripts to know
     IEnumerator Loading()
     {
         while (isLoading)
@@ -74,16 +88,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.05f);        
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKey("e"))
-        {
-            player.transform.Rotate(0, 30, 0);
-        }
-    }
-
-
 
     //this triggers when a room is spawned
     void SetRoom(GameObject inRoom)
@@ -128,11 +132,11 @@ public class GameManager : MonoBehaviour
 
     void NextScene()
     {
-        int sceneIndex;
+        /*int sceneIndex;
 
         sceneIndex = Random.Range(1, SceneManager.sceneCountInBuildSettings); //randomly searches for next room. temporary.
 
-        //SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(sceneIndex);*/
 
         if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
@@ -142,6 +146,10 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        
+    }
+
+    void PlayerDeath()
+    {
+        SceneManager.LoadScene("DeathScene");
     }
 }

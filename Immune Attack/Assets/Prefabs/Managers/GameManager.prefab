@@ -43,4 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a52650f31c3f9469f778e8e3a1fe44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomList: 
+  player: {fileID: 0}
+  loadInSound: {fileID: 8318841625312645104, guid: bb7bbb7dea7ff0f4197d24492236c453,
+    type: 3}
