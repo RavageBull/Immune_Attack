@@ -8,7 +8,10 @@ public class Enemy : MonoBehaviour
     Stats stats;
 
     public delegate void EnemyDeathDelegate(GameObject enemy);
-    public static EnemyDeathDelegate EnemyDeath;
+    public static event EnemyDeathDelegate EnemyDeath;
+
+    public delegate void BossDelegate(float currentHealth, float maxHealth);
+    public static event BossDelegate BossDamaged;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +60,11 @@ public class Enemy : MonoBehaviour
         if (stats.health < -50)
         {
             Death();
+        }
+
+        if (GetComponent<Boss>())
+        {
+            BossDamaged(stats.health, stats.maxHealth);
         }
 
 

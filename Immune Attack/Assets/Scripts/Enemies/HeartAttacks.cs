@@ -34,7 +34,8 @@ public class HeartAttacks : MonoBehaviour
     void Start()
     {
         stats = GetComponent<Stats>();
-        stats.health = 750;
+        stats.maxHealth = 750;
+        stats.health = stats.maxHealth;
         stats.damage = 10;
 
         animator = GetComponent<Animator>();
@@ -135,7 +136,7 @@ public class HeartAttacks : MonoBehaviour
 
                 var proj = Instantiate(projectile, startPointH, Quaternion.identity);
                 proj.GetComponent<Projectile>().damage = stats.damage;
-                Destroy(proj.gameObject, 5);
+                Destroy(proj.gameObject, 4);
                 proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
                 angle += angleStep;
             }
@@ -186,12 +187,12 @@ public class HeartAttacks : MonoBehaviour
 
                 var proj = Instantiate(projectile, startPointring, Quaternion.identity);
                 proj.GetComponent<Projectile>().damage = stats.damage;
-                Destroy(proj.gameObject, 5);
+                Destroy(proj.gameObject, 4);
                 proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
 
                 angle += angleStep;
             }
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
         }
    
     }
@@ -209,7 +210,7 @@ public class HeartAttacks : MonoBehaviour
             Vector3 projectileDirection = (GameManager.manager.player.transform.position - startPoint).normalized * projectileMoveSpeed;
             var proj = Instantiate(projectile, startPoint, Quaternion.identity);
             proj.GetComponent<Projectile>().damage = stats.damage;
-            Destroy(proj.gameObject, 5);
+            Destroy(proj.gameObject, 4);
             proj.GetComponent<Rigidbody>().velocity = new Vector3(projectileDirection.x, projectileDirection.y, projectileDirection.z);
             yield return new WaitForSeconds(0.1f);
 

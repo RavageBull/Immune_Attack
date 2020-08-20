@@ -22,6 +22,13 @@ public class UIManager : MonoBehaviour
 
     public Text powerUpText;
 
+    public Image bossName;
+    public Image bossBorder;
+    public Sprite heartName;
+    public Transform bossBarPivot;
+    public Image bossBarFill;
+
+
     private void OnEnable()
     {
         Player.Healed += UpdateHealth;
@@ -33,6 +40,8 @@ public class UIManager : MonoBehaviour
         Powerups.HealthUpdate += UpdateHealth;
         Powerups.AmmoUpdate += UpdateAmmo;
         Powerups.PowerUpPicked += PowerUpText;
+        Boss.BossAppear += ShowBoss;
+        Enemy.BossDamaged += UpdateBossHealth;
     }
 
     private void OnDisable()
@@ -46,14 +55,20 @@ public class UIManager : MonoBehaviour
         Powerups.HealthUpdate -= UpdateHealth;
         Powerups.AmmoUpdate -= UpdateAmmo;
         Powerups.PowerUpPicked -= PowerUpText;
+        Boss.BossAppear -= ShowBoss;
+        Enemy.BossDamaged -= UpdateBossHealth;
     }
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         animator.SetTrigger("ToBlack");
 
         powerUpText.color = new Color(powerUpText.color.r, powerUpText.color.g, powerUpText.color.b, 0);
+
+        bossName.enabled = false;
+        bossBorder.enabled = false;
+        bossBarFill.enabled = false;
     }
 
     void Load()
@@ -132,6 +147,27 @@ public class UIManager : MonoBehaviour
             powerUpText.color = new Color(powerUpText.color.r, powerUpText.color.g, powerUpText.color.b, powerUpText.color.a - 0.05f);
             powerUpText.rectTransform.localPosition = new Vector3(powerUpText.rectTransform.localPosition.x, powerUpText.rectTransform.localPosition.y + 10f, powerUpText.rectTransform.localPosition.z);
             yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    void ShowBoss()
+    {
+        bossName.enabled = true;
+        bossBorder.enabled = true;
+        bossBarFill.enabled = true;
+
+    }
+
+    void UpdateBossHealth(float currentHealth, float maxHealth)
+    {
+        if (player != null)
+        {
+            bossBarPivot.localScale = new Vector3(currentHealth / maxHealth, 1, 1);
+
+            if (bossBarPivot.localScale.x < 0)
+            {
+                bossBarPivot.localScale = new Vector3(0, 1, 1);
+            }
         }
     }
 }

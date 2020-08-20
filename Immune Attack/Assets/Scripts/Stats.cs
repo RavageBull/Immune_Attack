@@ -5,6 +5,7 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     public float health;
+    public float maxHealth;
     public float moveSpeed;
     public float damage;
     public float regen;
