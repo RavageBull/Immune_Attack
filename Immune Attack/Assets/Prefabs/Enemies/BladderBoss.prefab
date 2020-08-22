@@ -133,11 +133,11 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 13.777985, y: 17.39301, z: -32.596935}
-  - {x: 13.778423, y: 17.39301, z: 41.496937}
-  - {x: 13.778862, y: 17.39301, z: -32.596935}
-  - {x: 13.779301, y: 17.39301, z: 41.496937}
-  - {x: 13.779739, y: 17.39301, z: -32.596935}
+  - {x: -9.791913, y: 12.37991, z: -32.596935}
+  - {x: -9.791473, y: 12.3799095, z: 41.496937}
+  - {x: -9.791034, y: 12.37991, z: -32.596935}
+  - {x: -9.790594, y: 12.3799095, z: 41.496937}
+  - {x: -9.790154, y: 12.37991, z: -32.596935}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 1431919363183031796}
   - component: {fileID: 1431919363183031797}
   - component: {fileID: 1431919363183031798}
+  - component: {fileID: 2869530307915360902}
   m_Layer: 0
   m_Name: BladderBoss
   m_TagString: Untagged
@@ -398,3 +399,22 @@ MonoBehaviour:
   thrust: 100
   strafeDir: 0
   strafeTime: 1
+--- !u!114 &2869530307915360902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431919363183031799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5fb7b1259c22e46b698ee828cf2617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 0
+  moveSpeed: 0
+  damage: 0
+  regen: 0
+  regenDelay: 0
+  origin: {fileID: 0}

@@ -55,6 +55,7 @@ public class BladderAttacks : MonoBehaviour
     public float strafeTime = 5f;
 
     //Beat Settings AI
+    Stats stats;
     float beat;
     delegate void BeatDelegate();
     List<BeatDelegate> beatAttack = new List<BeatDelegate>();
@@ -62,6 +63,14 @@ public class BladderAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
+        //Stats
+        stats = GetComponent<Stats>();
+        stats.maxHealth = 750;
+        stats.health = stats.maxHealth;
+        stats.damage = 10;
+
         //Strafe initiated
         StartCoroutine(Strafe());
         lr = lineRenderer.GetComponent<LineRenderer>();
