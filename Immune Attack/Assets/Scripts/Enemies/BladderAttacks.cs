@@ -175,7 +175,7 @@ public class BladderAttacks : MonoBehaviour
             var projectile2 = Instantiate(Meteor, GameManager.manager.player.transform.position + new Vector3(Random.Range(-10f, 10f), 100, Random.Range(-10f, 10f)), Quaternion.identity);
             var rb2 = projectile2.GetComponent<Rigidbody>();
             rb2.AddForce(transform.up * -meteorSpeed);
-            //Destroy(projectile2, 2f);
+            Destroy(projectile2, 4f);
         }
 
         yield return null;
@@ -205,7 +205,7 @@ public class BladderAttacks : MonoBehaviour
             var projectile2 = Instantiate(Meteor, GameManager.manager.player.transform.position + new Vector3(Random.Range(-40f, 40f), 100f, Random.Range(-40f, 40f)), Quaternion.identity);
             var rb2 = projectile2.GetComponent<Rigidbody>();
             rb2.AddForce(transform.up * -meteorSpeed);
-            Destroy(projectile2, 2f);
+            Destroy(projectile2, 4f);
         }
 
         yield return null;

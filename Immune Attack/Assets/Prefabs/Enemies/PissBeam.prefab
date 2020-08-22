@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3099543149386035951}
   - component: {fileID: 706986493085003675}
   - component: {fileID: 5661689307573712640}
+  - component: {fileID: 1919278895983293864}
   m_Layer: 10
   m_Name: PissBeam
   m_TagString: Untagged
@@ -59,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 04f5251f6e8d0d24ca44d21a4ccb5f5b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +110,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1919278895983293864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417343367337947397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d712c4d5d4fea54986c894bb7e718ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  player1: {fileID: 0}
+  projectileMoveSpeed: 0

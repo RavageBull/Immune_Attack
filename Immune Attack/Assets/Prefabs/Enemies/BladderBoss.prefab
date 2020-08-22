@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 1004818215587367127}
   - component: {fileID: 1004818215587367112}
   - component: {fileID: 1004818215587367113}
-  - component: {fileID: 1004818215587367114}
   - component: {fileID: 1004818215587367115}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PISSBEAM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1004818215587367114
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004818215587367116}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!120 &1004818215587367115
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -133,11 +119,11 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: -9.791913, y: 12.37991, z: -32.596935}
-  - {x: -9.791473, y: 12.3799095, z: 41.496937}
-  - {x: -9.791034, y: 12.37991, z: -32.596935}
-  - {x: -9.790594, y: 12.3799095, z: 41.496937}
-  - {x: -9.790154, y: 12.37991, z: -32.596935}
+  - {x: -9.791807, y: 12.379911, z: -50.5}
+  - {x: -9.79122, y: 12.379911, z: 48.5}
+  - {x: -9.790632, y: 12.379911, z: -50.5}
+  - {x: -9.790045, y: 12.379911, z: 48.5}
+  - {x: -9.789457, y: 12.379911, z: -50.5}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -239,7 +225,9 @@ GameObject:
   - component: {fileID: 1431919363183031797}
   - component: {fileID: 1431919363183031798}
   - component: {fileID: 2869530307915360902}
-  m_Layer: 0
+  - component: {fileID: 3727850789610397130}
+  - component: {fileID: 2665304752939420489}
+  m_Layer: 9
   m_Name: BladderBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,3 +406,29 @@ MonoBehaviour:
   regen: 0
   regenDelay: 0
   origin: {fileID: 0}
+--- !u!114 &3727850789610397130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431919363183031799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5db7b656c182941b85da7cd805fd8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpPrefab: {fileID: 0}
+--- !u!135 &2665304752939420489
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431919363183031799}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4556065
+  m_Center: {x: -0.10032091, y: 0.47308952, z: -0.13724759}
