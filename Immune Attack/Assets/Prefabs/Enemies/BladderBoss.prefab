@@ -133,11 +133,11 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: -9.874571, y: 13.197717, z: -32.596935}
-  - {x: -9.874131, y: 13.197716, z: 41.496937}
-  - {x: -9.873692, y: 13.197717, z: -32.596935}
-  - {x: -9.873252, y: 13.197716, z: 41.496937}
-  - {x: -9.872812, y: 13.197717, z: -32.596935}
+  - {x: 13.777985, y: 17.39301, z: -32.596935}
+  - {x: 13.778423, y: 17.39301, z: 41.496937}
+  - {x: 13.778862, y: 17.39301, z: -32.596935}
+  - {x: 13.779301, y: 17.39301, z: 41.496937}
+  - {x: 13.779739, y: 17.39301, z: -32.596935}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -254,7 +254,7 @@ Transform:
   m_GameObject: {fileID: 1431919363183031799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.49, y: -0.86, z: 21.09}
-  m_LocalScale: {x: 7.2892876, y: 7.2892876, z: 7.2892876}
+  m_LocalScale: {x: 16.879028, y: 16.879028, z: 16.879028}
   m_Children:
   - {fileID: 1004818215930154319}
   - {fileID: 1004818215587367127}
@@ -379,16 +379,22 @@ MonoBehaviour:
   Meteor: {fileID: 3177728472861683605, guid: dfc331004846cf94b859ea08ed86b778, type: 3}
   BladderBoss: {fileID: 0}
   HomingProjectile: {fileID: 0}
-  Geyser: {fileID: 0}
-  lerpTime2: 0.38
+  Geyser: {fileID: 497578890239060183, guid: 07dc7aa95e094c6429b47bd379c10f9b, type: 3}
+  geyserNumber: 30
+  geyserSpeed: 1000
+  PissBeam: {fileID: 7417343367337947397, guid: d25a2e3a43b25094295708f35c2a95ae,
+    type: 3}
+  pissSpeed: -2000
+  pissNumber: 100
+  lerpTime2: 0.5
   myAngles:
-  - {x: 0, y: 30, z: 0}
-  - {x: 0, y: 150, z: 0}
+  - {x: 0, y: 10, z: 0}
+  - {x: 0, y: 170, z: 0}
   len: 2
   startPosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
-  distance: 10
-  lerpTime: 20
+  distance: 20
+  lerpTime: 30
   thrust: 100
   strafeDir: 0
   strafeTime: 1

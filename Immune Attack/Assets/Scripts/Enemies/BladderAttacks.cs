@@ -54,6 +54,10 @@ public class BladderAttacks : MonoBehaviour
     public int strafeDir = 0;
     public float strafeTime = 5f;
 
+    //Beat Settings AI
+    float beat;
+    delegate void BeatDelegate();
+    List<BeatDelegate> beatAttack = new List<BeatDelegate>();
 
     // Start is called before the first frame update
     void Start()
@@ -70,19 +74,28 @@ public class BladderAttacks : MonoBehaviour
         //LerpStuff
         startPosition = transform.position;
         endPosition = transform.position + Vector3.up * distance;
+
+        //BeatStuff
+        beatAttack.Add(ConstantMeteorShower);
+        beatAttack.Add(MeteorShower);
+        beatAttack.Add(Geysers);
+        beatAttack.Add(PissBeamAttack);
+
+        beat = 3f;
+        StartCoroutine("BeatTimer");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //Line renderer stuff
         lr.SetPosition(0, lazerStart.transform.position);
         //Testing
         if (Input.GetMouseButtonDown(0))
         {
-            PissBeamAttack();
+            //PissBeamAttack();
             //if we want ot use line renederer
-            lr.enabled = true;
+            //lr.enabled = true;
         }
 
         //Rotation stuff
@@ -102,8 +115,7 @@ public class BladderAttacks : MonoBehaviour
             }
         }
 
-        //LerpStuff
-        
+        //LerpStuff      
         currentLerpTime += Time.deltaTime;
         if(currentLerpTime >= lerpTime)
         {
@@ -114,6 +126,21 @@ public class BladderAttacks : MonoBehaviour
         //Lerps in y direction Only
         transform.position = Vector3.Lerp(startPosition, endPosition, Perc);
         
+    }
+
+    IEnumerator BeatTimer()
+    {
+        while (gameObject != null)
+        {
+            yield return new WaitForSeconds(beat);
+
+            //animator.SetTrigger("Beat");
+
+            int index = Random.Range(0, beatAttack.Count);
+            beatAttack[index]();
+
+            Debug.Log(index);
+        }
     }
 
     void MeteorShower()
@@ -155,16 +182,18 @@ public class BladderAttacks : MonoBehaviour
         for (int i = 0; i <= meteorCount*2; i++)
         {
 
-            var projectile = Instantiate(Meteor, transform.position, Quaternion.identity);
+            var projectile = Instantiate(Meteor, transform.position + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
             var rb = projectile.GetComponent<Rigidbody>();
             rb.AddForce(transform.up * meteorSpeed);
             Destroy(projectile, 2f);
-            yield return new WaitForSeconds(0.1f);
+            //yield return new WaitForSeconds(0.05f);
         }
+
+        yield return new WaitForSeconds(3f);
 
         for (int j = 0; j <= meteorCount*2; j++)
         {
-            var projectile2 = Instantiate(HomingProjectile, GameManager.manager.player.transform.position + new Vector3(Random.Range(1f, 30f), 100f, Random.Range(1f, 30f)), Quaternion.identity);
+            var projectile2 = Instantiate(Meteor, GameManager.manager.player.transform.position + new Vector3(Random.Range(-40f, 40f), 100f, Random.Range(-40f, 40f)), Quaternion.identity);
             var rb2 = projectile2.GetComponent<Rigidbody>();
             rb2.AddForce(transform.up * -meteorSpeed);
             Destroy(projectile2, 2f);
