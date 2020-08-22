@@ -94,6 +94,11 @@ public class Powerups : MonoBehaviour
         }
     }
 
+    public void RandomBossPowerUp()
+    {
+        powerUpType = (PowerUpType)Random.Range(2, System.Enum.GetValues(typeof(PowerUpType)).Length);
+    }
+
     //when the GameManager finishes collecting data
     void Load()
     {

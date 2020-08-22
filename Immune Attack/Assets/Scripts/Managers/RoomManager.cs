@@ -27,23 +27,29 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //finds all enemies in current room and adds to a list
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            enemyList.Add(enemies[i]);
-        }
-
         //disables portal door
         portalDoor.SetActive(false);
 
+        //finds all enemies in current room and adds to a list
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        //sends an event when spawned which should notify the game manager who the current room manager is
+        if (enemies.Length > 0)
+        {
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemyList.Add(enemies[i]);
+            }
+        }
+        else
+        {
+            SpawnPortal();
+        }
+
+        //sends an event stating that the room manager is ready which the game manager should pick up
         RoomSpawn(gameObject);
-
     }
 
+    //triggers this when an enemy death event happens
     void EnemyUpdate(GameObject enemy)
     {
         enemyList.Remove(enemy);
@@ -57,7 +63,6 @@ public class RoomManager : MonoBehaviour
 
     void SpawnPortal()
     {
-        //Instantiate(portalPrefab, portalPoint.position, Quaternion.identity);
         portalDoor.SetActive(true);
     }
 }
