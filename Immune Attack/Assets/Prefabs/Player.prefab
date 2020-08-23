@@ -180,7 +180,10 @@ MonoBehaviour:
   m_FootstepSounds:
   - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
-  m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  m_JumpSounds:
+  - {fileID: 8300000, guid: eaeb442a6a0f3b14cb2a6e9aa2f7ee87, type: 3}
+  - {fileID: 8300000, guid: 674c30dd0b312d64c929a2999fc48f2c, type: 3}
+  - {fileID: 8300000, guid: 917f73debe646484a8db75ab53fb5758, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
   jumpMax: 0
 --- !u!54 &5400000
@@ -321,8 +324,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 0
   moveSpeed: 0
   damage: 0
+  regen: 0
+  regenDelay: 0
   origin: {fileID: 7985821675760005038}
 --- !u!114 &6895665812379338620
 MonoBehaviour:
@@ -336,6 +342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bbd84a61a095743b1091f096e2e8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashSpeed: 0
+  dashCooldown: 0
 --- !u!114 &3056719063939649315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyObject: {fileID: 0}
   bulletsMag: 20
-  bulletsTotal: 1000
   gunfireRate: 0.15
   fireTimer: 0
   gunATK: 10
@@ -360,7 +367,6 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 6d88828a7b969624fb4034e19184dd69, type: 3}
   bulletHole: {fileID: 1235035097298946, guid: 13a41486f54c3634fb3e501928c77d9d, type: 3}
   spark: {fileID: 2062754181803782628, guid: 485bd1f729b6015498d5667f2d54be1d, type: 3}
-  cam: {fileID: 2000000}
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0

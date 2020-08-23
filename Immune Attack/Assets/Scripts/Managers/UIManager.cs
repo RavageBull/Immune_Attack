@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     public Image bossName;
     public Image bossBorder;
     public Sprite heartName;
+    public Sprite bladderName;
     public Transform bossBarPivot;
     public Image bossBarFill;
 
@@ -150,12 +151,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void ShowBoss()
+    void ShowBoss(string name, AudioClip clip)
     {
+        if (name == "HeartBoss")
+        {
+            bossName.sprite = heartName;
+        }
+        else if (name == "BladderBoss")
+        {
+            bossName.sprite = bladderName;
+        }
+
         bossName.enabled = true;
         bossBorder.enabled = true;
         bossBarFill.enabled = true;
-
     }
 
     void UpdateBossHealth(float currentHealth, float maxHealth)

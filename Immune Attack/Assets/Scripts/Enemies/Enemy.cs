@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     public delegate void BossDelegate(float currentHealth, float maxHealth);
     public static event BossDelegate BossDamaged;
 
+    public delegate void BossDeathDelegate();
+    public static event BossDeathDelegate BossDeath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,9 +47,19 @@ public class Enemy : MonoBehaviour
         stats.health -= dmg;
         Debug.Log("Enemy took " + dmg + " damage");
 
+        if (GetComponent<Boss>())
+        {
+            BossDamaged(stats.health, stats.maxHealth);
+        }
+
         if (stats.health <= 0)
         {
-            if (GetComponent<Animator>())
+            if (GetComponent<Boss>())
+            {
+                BossDeath();
+                Death();
+            }
+            else if (GetComponent<Animator>())
             {
                 GetComponent<Animator>().SetTrigger("Death");
             }
@@ -57,15 +70,7 @@ public class Enemy : MonoBehaviour
             
         }
 
-        if (stats.health < -50)
-        {
-            Death();
-        }
-
-        if (GetComponent<Boss>())
-        {
-            BossDamaged(stats.health, stats.maxHealth);
-        }
+        
 
 
     }

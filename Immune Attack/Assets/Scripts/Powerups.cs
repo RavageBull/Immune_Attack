@@ -9,7 +9,7 @@ public class Powerups : MonoBehaviour
 {
 
     public GameObject powerupParticle; //not sure what this is for
-    GameObject player = null;
+    public GameObject player = null;
     Player stats1;
     PlayerController stats2;
     PlayerShoot stats3;
@@ -64,6 +64,19 @@ public class Powerups : MonoBehaviour
     private void OnDisable()
     {
         GameManager.FinishLoading -= Load;
+    }
+
+    private void Start()
+    {
+        if (GameManager.manager.player != null && player == null)
+        {
+            player = GameManager.manager.player;
+
+            stats1 = player.GetComponent<Player>();
+            stats2 = player.GetComponent<PlayerController>();
+            stats3 = player.GetComponent<PlayerShoot>();
+            stats4 = player.GetComponent<FirstPersonController>();
+        }
     }
 
     void Update()

@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Utility.Inspector;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
     [HideInInspector] public GameObject player;
 
-    //public List<int> roomList;
-
     GameObject room;
     /*[HideInInspector]*/ public GameObject sound;
     bool isLoading;
 
     [SerializeField] GameObject loadInSound = null;
+
+    List<int> roomIndex = new List<int>(); // the indexes of the basic monster rooms
+    List<int> roomSequence = new List<int>(); //the list that will contain the sequence of the rooms that are randomised
 
     public delegate void FinishLoadingDelegate();
     public static FinishLoadingDelegate FinishLoading;
@@ -57,14 +59,76 @@ public class GameManager : MonoBehaviour
     //once a scene is loaded, we start to assign some values that need to be created
     void Load(Scene scene, LoadSceneMode mode)
     {
-        room = null;
+        //room = null;
         isLoading = true;
         StartCoroutine("Loading");
 
-        if (SceneManager.GetActiveScene().buildIndex != 1)
+        //spawns the warp sound.
+        if (scene.name != "StartRoom" && scene.name != "DeathRoom")
         {
             GameObject obj = Instantiate(loadInSound, transform.position, Quaternion.identity);
             Destroy(obj, 1);
+        }
+
+        //if the game loads to the start room, sets up the randomised sequence of rooms.
+        //the intended sequence is 2 monster rooms, 1 power up room, 1 monster room, 1 boss room and so on.
+        //this sequence is very hard coded and any changes to the indexes of the scenes will need appropriate adjustments to the script.
+        if (scene.name == "StartRoom")
+        {
+            roomIndex.Clear();
+            roomSequence.Clear();
+
+            //adds the scene indexes of all the basic rooms to the room list
+            roomIndex.Add(2);
+            roomIndex.Add(3);
+            roomIndex.Add(4);
+            roomIndex.Add(5);
+            roomIndex.Add(6);
+            roomIndex.Add(7);
+
+            //randomises the list
+            RandomiseRooms();
+
+            //10 is the combination of monster rooms, power up rooms, and boss rooms possible in the sequence.
+            for (int i = 0; i < 10; i++)
+            {
+                //these indexes are where powerup rooms will be
+                if (i == 2 || i == 7)
+                {
+                    //8 is the scene index of the power up room
+                    roomSequence.Add(8);
+                }
+                else if (i == 4)
+                {
+                    //9 is the index of the bladder boss
+                    roomSequence.Add(9);
+                }
+                else if (i == 9)
+                {
+                    //10 is the index of the heart boss
+                    roomSequence.Add(10);
+                }
+                else
+                {
+                    //else adds the next randomised room index to the sequence.
+                    roomSequence.Add(roomIndex[0]);
+                    roomIndex.RemoveAt(0);
+                }
+
+            }
+        }
+    }
+
+    void RandomiseRooms()
+    {
+        for (int i = 0; i < roomIndex.Count; i++)
+        {
+            int temp = roomIndex[i];
+            int randomIndex = Random.Range(i, roomIndex.Count);
+            roomIndex[i] = roomIndex[randomIndex];
+            roomIndex[randomIndex] = temp;
+
+            Debug.Log(roomIndex[i]);
         }
     }
 
@@ -132,15 +196,14 @@ public class GameManager : MonoBehaviour
 
     void NextScene()
     {
-        /*int sceneIndex;
-
-        sceneIndex = Random.Range(1, SceneManager.sceneCountInBuildSettings); //randomly searches for next room. temporary.
-
-        SceneManager.LoadScene(sceneIndex);*/
-
-        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+        if (roomSequence.Count > 0)
         {
-            Application.Quit();
+            SceneManager.LoadScene(roomSequence[0]);
+            roomSequence.RemoveAt(0);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 10)
+        {
+            //EndGame
         }
         else
         {
@@ -150,6 +213,6 @@ public class GameManager : MonoBehaviour
 
     void PlayerDeath()
     {
-        SceneManager.LoadScene("DeathScene");
+        SceneManager.LoadScene("DeathRoom");
     }
 }

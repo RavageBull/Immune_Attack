@@ -13,10 +13,4 @@ public class PowerUpRoom : MonoBehaviour
         GameObject obj = Instantiate(powerUpPrefab, transform.position, Quaternion.identity);
         obj.GetComponent<Powerups>().RandomBossPowerUp();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
