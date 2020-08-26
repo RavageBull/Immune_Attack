@@ -16901,10 +16901,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piss Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 5056247719505259524, guid: 73e9f18c4b3fe5c449f808507a3c8e81,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5056247719505259525, guid: 73e9f18c4b3fe5c449f808507a3c8e81,
         type: 3}
       propertyPath: distance
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056247719505259525, guid: 73e9f18c4b3fe5c449f808507a3c8e81,
+        type: 3}
+      propertyPath: canHurt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056247719505259525, guid: 73e9f18c4b3fe5c449f808507a3c8e81,
+        type: 3}
+      propertyPath: damage
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5056247719505259577, guid: 73e9f18c4b3fe5c449f808507a3c8e81,
         type: 3}
@@ -44077,27 +44092,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 173723748}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1662517867 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5056247719505259522, guid: 73e9f18c4b3fe5c449f808507a3c8e81,
-    type: 3}
-  m_PrefabInstance: {fileID: 676320474}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1662517873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662517867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d712c4d5d4fea54986c894bb7e718ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 100
-  player1: {fileID: 0}
-  projectileMoveSpeed: 0
 --- !u!1001 &1663082558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44925,7 +44919,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5836
+  m_Name: pb_Mesh-1696
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

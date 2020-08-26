@@ -12,6 +12,8 @@ public class BladderFloor : MonoBehaviour
     public float distance = 30f;
     public float lerpTime = 5f;
     private float currentLerpTime = 0;
+    public bool canHurt;
+    public float damage;
 
     // Start is called before the first frame update
     void Start()
@@ -35,5 +37,22 @@ public class BladderFloor : MonoBehaviour
         float Perc = currentLerpTime / lerpTime;
         //Lerps in y direction Only
         transform.position = Vector3.Lerp(startPosition, endPosition, Perc);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("Trigger entered");
+        if (canHurt == true && other.gameObject.GetComponent<Player>())
+        {
+            other.gameObject.GetComponent<Player>().TakeDamage(damage);
+            StartCoroutine(DealDamage());
+        }
+    }
+
+    IEnumerator DealDamage()
+    {
+        canHurt = false;
+        yield return new WaitForSeconds(1f);
+        canHurt = true;
     }
 }
