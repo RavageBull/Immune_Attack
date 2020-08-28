@@ -126,8 +126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 0
   moveSpeed: 0
   damage: 0
+  regen: 0
+  regenDelay: 0
   origin: {fileID: 0}
 --- !u!114 &4710136925295565174
 MonoBehaviour:
