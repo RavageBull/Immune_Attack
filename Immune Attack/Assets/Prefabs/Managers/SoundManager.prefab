@@ -142,3 +142,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startLoop: {fileID: 8300000, guid: 17fad48aa77b53a488be898103984fad, type: 3}
   mainLoop: {fileID: 8300000, guid: a2061c719e635f446b9271b517759c87, type: 3}
+  bossMusic: {fileID: 8300000, guid: b93e4b27b5a04524a9a4f6d41e579998, type: 3}

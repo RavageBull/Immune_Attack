@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    [SerializeField] AudioClip bossClip = null;
-
-    public delegate void BossDelegate(string name, AudioClip clip);
+    public delegate void BossDelegate(string name);
     public static event BossDelegate BossAppear;
 
     [SerializeField] GameObject powerUpPrefab = null;
@@ -24,7 +22,7 @@ public class Boss : MonoBehaviour
 
     void Start()
     {
-        BossAppear(gameObject.name, bossClip);
+        BossAppear(gameObject.name);
     }
 
     void SpawnPowerUp()

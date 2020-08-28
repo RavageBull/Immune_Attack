@@ -91,7 +91,6 @@ public class UIManager : MonoBehaviour
             UpdateAmmo();
 
             animator.SetTrigger("Normal");
-            Debug.Log("NORMAL");
         }
     }
 
@@ -152,7 +151,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void ShowBoss(string name, AudioClip clip)
+    void ShowBoss(string name)
     {
         if (name == "HeartBoss")
         {
