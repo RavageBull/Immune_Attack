@@ -38,6 +38,7 @@ public class SoundManager : MonoBehaviour
         if (CheckIfBoss())
         {
             StopCoroutine("SongEnd");
+            source.Stop();
             source.clip = bossMusic;
             source.Play();
         }

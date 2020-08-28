@@ -96,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.024
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8928342913971537427
 Rigidbody:
@@ -146,3 +146,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  player1: {fileID: 0}
+  projectileMoveSpeed: 0

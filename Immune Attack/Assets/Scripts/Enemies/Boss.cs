@@ -27,8 +27,12 @@ public class Boss : MonoBehaviour
 
     void SpawnPowerUp()
     {
-        GameObject obj = Instantiate(powerUpPrefab, powerUpPoint.position, Quaternion.identity);
-        obj.GetComponent<Powerups>().RandomBossPowerUp();
+        if (powerUpPrefab != null)
+        {
+            GameObject obj = Instantiate(powerUpPrefab, powerUpPoint.position, Quaternion.identity);
+            obj.GetComponent<Powerups>().RandomBossPowerUp();
+        }
+        
     }
 
 }

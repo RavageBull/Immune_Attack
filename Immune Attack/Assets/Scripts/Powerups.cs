@@ -68,14 +68,17 @@ public class Powerups : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.manager.player != null && player == null)
+        if (GameManager.manager != null)
         {
-            player = GameManager.manager.player;
+            if (GameManager.manager.player != null && player == null)
+            {
+                player = GameManager.manager.player;
 
-            stats1 = player.GetComponent<Player>();
-            stats2 = player.GetComponent<PlayerController>();
-            stats3 = player.GetComponent<PlayerShoot>();
-            stats4 = player.GetComponent<FirstPersonController>();
+                stats1 = player.GetComponent<Player>();
+                stats2 = player.GetComponent<PlayerController>();
+                stats3 = player.GetComponent<PlayerShoot>();
+                stats4 = player.GetComponent<FirstPersonController>();
+            }
         }
     }
 

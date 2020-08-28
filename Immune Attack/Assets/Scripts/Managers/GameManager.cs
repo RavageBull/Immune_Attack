@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject loadInSound = null;
 
     List<int> roomIndex = new List<int>(); // the indexes of the basic monster rooms
-    List<int> roomSequence = new List<int>(); //the list that will contain the sequence of the rooms that are randomised
+    public List<int> roomSequence = new List<int>(); //the list that will contain the sequence of the rooms that are randomised
 
     public delegate void FinishLoadingDelegate();
     public static FinishLoadingDelegate FinishLoading;
@@ -56,15 +56,29 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Title")
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     //once a scene is loaded, we start to assign some values that need to be created
     void Load(Scene scene, LoadSceneMode mode)
     {
-        //room = null;
         isLoading = true;
         StartCoroutine("Loading");
 
+        if (scene.name == "Title")
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         //spawns the warp sound.
-        if (scene.name != "StartRoom" && scene.name != "DeathRoom")
+        if (scene.name != "Title" /*&& scene.name != "DeathRoom"*/)
         {
             GameObject obj = Instantiate(loadInSound, transform.position, Quaternion.identity);
             Destroy(obj, 1);
@@ -101,7 +115,7 @@ public class GameManager : MonoBehaviour
                     roomSequence.Add(2); //the scene index of the first room in the build settings
                 }
                 //these indexes are where powerup rooms will be
-                if (i == 1 || i == 5 || i == 9)
+                else if (i == 1 || i == 5 || i == 9)
                 {
                     roomSequence.Add(8); //the scene index of the power up room
                 }
@@ -214,9 +228,9 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(roomSequence[0]);
             roomSequence.RemoveAt(0);
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 10)
+        else if (SceneManager.GetActiveScene().buildIndex == 11)
         {
-            //EndGame
+            Win();
         }
         else
         {
@@ -227,5 +241,10 @@ public class GameManager : MonoBehaviour
     void PlayerDeath()
     {
         SceneManager.LoadScene("DeathRoom");
+    }
+
+    void Win()
+    {
+        SceneManager.LoadScene("WinRoom");
     }
 }

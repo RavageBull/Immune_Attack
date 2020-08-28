@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public Image bossBorder;
     public Sprite heartName;
     public Sprite bladderName;
+    public Sprite brainName;
     public Transform bossBarPivot;
     public Image bossBarFill;
 
@@ -160,6 +161,10 @@ public class UIManager : MonoBehaviour
         else if (name == "BladderBoss")
         {
             bossName.sprite = bladderName;
+        }
+        else if (name == "BrainBoss")
+        {
+            bossName.sprite = brainName;
         }
 
         bossName.enabled = true;

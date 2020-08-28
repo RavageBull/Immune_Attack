@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeathRoom.unity
     guid: e5ae4fcb8939335448ee76aba045a704
+  - enabled: 1
+    path: Assets/Scenes/WinRoom.unity
+    guid: 970b2272bc0ad5040b1a9e6256483655
   m_configObjects: {}

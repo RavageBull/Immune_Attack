@@ -816,6 +816,7 @@ MonoBehaviour:
   bossBorder: {fileID: 6450410059537367333}
   heartName: {fileID: 21300000, guid: c86fa5071f70f7d468f754ab95727623, type: 3}
   bladderName: {fileID: 21300000, guid: 5cc851b1936b78b4c84b98463d12c248, type: 3}
+  brainName: {fileID: 21300000, guid: 1bef1d2cbf4067b42b76b478d1f5ded4, type: 3}
   bossBarPivot: {fileID: 7887483992179495300}
   bossBarFill: {fileID: 5404465827783932842}
 --- !u!95 &2048783551565581619
