@@ -25,6 +25,7 @@ public class BladderAttacks : MonoBehaviour
     public GameObject Geyser;
     public int geyserNumber;
     public float geyserSpeed;
+    public ParticleSystem geyserPart;
 
     public GameObject PissBeam;
     public float pissSpeed;
@@ -105,6 +106,7 @@ public class BladderAttacks : MonoBehaviour
             //PissBeamAttack();
             //if we want ot use line renederer
             //lr.enabled = true;
+            //Geysers();
         }
 
         //Rotation stuff
@@ -222,7 +224,12 @@ public class BladderAttacks : MonoBehaviour
     {
 
         //PLAY PARTICLE EFFECT
+  
         var geyserSpot = GameManager.manager.player.transform.position;
+        var rotation = Vector3.up;
+        var geyserParticle = Instantiate(geyserPart, geyserSpot, Quaternion.identity);
+        geyserParticle.Play();
+        Destroy(geyserParticle, 3);
         //geyserParticle.Play();
         yield return new WaitForSeconds(2f);
 
