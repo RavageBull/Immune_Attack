@@ -91,6 +91,7 @@ public class UIManager : MonoBehaviour
             UpdateAmmo();
 
             animator.SetTrigger("Normal");
+            Debug.Log("NORMAL");
         }
     }
 

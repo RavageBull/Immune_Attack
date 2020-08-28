@@ -71,15 +71,16 @@ public class GameManager : MonoBehaviour
         }
 
         //if the game loads to the start room, sets up the randomised sequence of rooms.
-        //the intended sequence is 2 monster rooms, 1 power up room, 1 monster room, 1 boss room and so on.
+        //the intended sequence is 1 monster room, 1 power up room, 1 monster room, 1 boss room and so on.
         //this sequence is very hard coded and any changes to the indexes of the scenes will need appropriate adjustments to the script.
+        //the first monster room will always be the same, since it will act as an introdutory level
         if (scene.name == "StartRoom")
         {
             roomIndex.Clear();
             roomSequence.Clear();
 
-            //adds the scene indexes of all the basic rooms to the room list
-            roomIndex.Add(2);
+            //adds the scene indexes of all the basic rooms that will be randomised to the room list 
+            //roomIndex.Add(2); this room will now always be the first one in the sequence
             roomIndex.Add(3);
             roomIndex.Add(4);
             roomIndex.Add(5);
@@ -89,25 +90,37 @@ public class GameManager : MonoBehaviour
             //randomises the list
             RandomiseRooms();
 
-            //10 is the combination of monster rooms, power up rooms, and boss rooms possible in the sequence.
-            for (int i = 0; i < 10; i++)
+            //12 is the combination of monster rooms, power up rooms, and boss rooms possible in the sequence.
+            //sequence is planned out as    M>P>M>B> M>P>M>B> M>P>M>B>
+            //                              0 1 2 3  4 5 6 7  8 9 10 11
+            for (int i = 0; i < 12; i++)
             {
+                //the first room in the sequence is always the same
+                if (i == 0)
+                {
+                    roomSequence.Add(2); //the scene index of the first room in the build settings
+                }
                 //these indexes are where powerup rooms will be
-                if (i == 2 || i == 7)
+                if (i == 1 || i == 5 || i == 9)
                 {
-                    //8 is the scene index of the power up room
-                    roomSequence.Add(8);
+                    roomSequence.Add(8); //the scene index of the power up room
                 }
-                else if (i == 4)
+                //first boss room
+                else if (i == 3)
                 {
-                    //9 is the index of the bladder boss
-                    roomSequence.Add(9);
+                    roomSequence.Add(9); //the index of the bladder boss
                 }
-                else if (i == 9)
+                //second boss room
+                else if (i == 7)
                 {
-                    //10 is the index of the heart boss
-                    roomSequence.Add(10);
+                    roomSequence.Add(10); //the index of the heart boss
                 }
+                //third boss room
+                else if (i == 11)
+                {
+                    roomSequence.Add(11); //index of brain boss
+                }
+                //if the current sequence is not a power up or a boss room, then add a monster room from the list
                 else
                 {
                     //else adds the next randomised room index to the sequence.
