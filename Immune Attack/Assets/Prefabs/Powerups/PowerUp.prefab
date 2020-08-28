@@ -93,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8, z: 0.8}
-  m_Center: {x: 5.105958e-10, y: 0, z: 0.012791086}
+  m_Size: {x: 1.6693237, y: 0.82477546, z: 1.8166605}
+  m_Center: {x: -0.073447734, y: 0.012387707, z: -0.009934842}
 --- !u!114 &359620983927196112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupParticle: {fileID: 0}
+  player: {fileID: 0}
   powerUpSound: {fileID: 8318841625312645104, guid: f891c61bd911b4542912c9a6a4f676d6,
     type: 3}
   powerUpType: 0
