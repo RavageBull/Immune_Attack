@@ -50,6 +50,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         float jumpTimer;
         float jumpTimerCap;
 
+        bool footstep;
+        float footstepCooldown;
+
         // Use this for initialization
         private void Start()
         {
@@ -67,6 +70,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             jumpMax = 2;
 
             jumpTimerCap = 0.2f;
+
+            footstep = true;
         }
 
 
@@ -206,18 +211,33 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void PlayFootStepAudio()
         {
-            if (!m_CharacterController.isGrounded)
+            if (footstep)
             {
-                return;
+                footstep = false;
+                StartCoroutine("FootstepCD");
+
+                if (!m_CharacterController.isGrounded)
+                {
+                    return;
+                }
+                // pick & play a random footstep sound from the array,
+                // excluding sound at index 0
+                int n = Random.Range(1, m_FootstepSounds.Length);
+                m_AudioSource.clip = m_FootstepSounds[n];
+                m_AudioSource.PlayOneShot(m_AudioSource.clip);
+                // move picked sound to index 0 so it's not picked next time
+                m_FootstepSounds[n] = m_FootstepSounds[0];
+                m_FootstepSounds[0] = m_AudioSource.clip;
             }
-            // pick & play a random footstep sound from the array,
-            // excluding sound at index 0
-            int n = Random.Range(1, m_FootstepSounds.Length);
-            m_AudioSource.clip = m_FootstepSounds[n];
-            m_AudioSource.PlayOneShot(m_AudioSource.clip);
-            // move picked sound to index 0 so it's not picked next time
-            m_FootstepSounds[n] = m_FootstepSounds[0];
-            m_FootstepSounds[0] = m_AudioSource.clip;
+
+
+            
+        }
+
+        IEnumerator FootstepCD()
+        {
+            yield return new WaitForSeconds(0.2f);
+            footstep = true;
         }
 
 

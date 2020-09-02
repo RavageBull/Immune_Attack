@@ -8,6 +8,7 @@ public class RedBloodCell : MonoBehaviour
 
     Rigidbody rb;
     Vector3 lastVelocity;
+    Vector3 direction;
 
     Animator animator;
 
@@ -38,9 +39,6 @@ public class RedBloodCell : MonoBehaviour
         activeRange = 20f;
         attackRange = 10f;
 
-        rb.AddForce(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 1200f);
-
-
         if (trailPrefab != null)
         {
             trail = Instantiate(trailPrefab, transform.position, Quaternion.identity);
@@ -51,7 +49,12 @@ public class RedBloodCell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lastVelocity = rb.velocity;
+        if (rb.velocity == Vector3.zero)
+        {
+            direction = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        }
+
+        rb.velocity = direction * stats.moveSpeed;
 
         if (Vector3.Distance(gameObject.transform.position, GameManager.manager.player.transform.position) < activeRange)
         {
@@ -67,10 +70,7 @@ public class RedBloodCell : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        float speed = lastVelocity.magnitude;
-        Vector3 direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
-
-        rb.velocity = direction * Mathf.Max(speed, 0f);
+        direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
     }
 
     //this function is triggered by an event in the animation of this object

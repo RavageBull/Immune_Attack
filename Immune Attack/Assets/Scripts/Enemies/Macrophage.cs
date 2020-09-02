@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//The Macrophage starts off Idle. While idle, it cannot be damaged.
-//If the player gets too close, the Macrophage starts to move towards the player and attacks.
+//The Macrophage starts off Idle. While idle, it cannot be damaged and will move slowly towards the player.
+//If the player gets too close, the Macrophage activates and moves faster and can attack the player if close enough.
 //While active, the Macrophage is vulnerable.
 public class Macrophage : MonoBehaviour
 {
@@ -47,15 +47,15 @@ public class Macrophage : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        stats.health = 300;
+        stats.health = 200;
         stats.damage = 30;
         stats.moveSpeed = 5;
 
         agent.speed = stats.moveSpeed;
 
-        searchRange = 20f;
+        searchRange = 26f;
         canAttack = true;
-        attackRange = 12f;
+        attackRange = 15f;
         attackCooldown = 2f;
 
         prevHealth = stats.health;
@@ -86,6 +86,15 @@ public class Macrophage : MonoBehaviour
             stats.health = prevHealth; //temporary way of making Macrophage "invulnerable" while idle;
         }
 
+        agent.speed = 5;
+        NavMeshHit hit;
+        Vector3 destination = Vector3.zero;
+        if (NavMesh.SamplePosition(GameManager.manager.player.transform.position, out hit, 10f, 1))
+        {
+            destination = hit.position;
+        }
+        agent.SetDestination(destination);
+
         //if enemy gets close enough to the player, switch to search mode
         if (Vector3.Distance(gameObject.transform.position, GameManager.manager.player.transform.position) < searchRange)
         {
@@ -94,10 +103,13 @@ public class Macrophage : MonoBehaviour
             audioSource.clip = attackClip;
             audioSource.Play();
         }
+
     }
 
     void Search()
     {
+        agent.speed = 10;
+
         NavMeshHit hit;
         Vector3 destination = Vector3.zero;
         if (NavMesh.SamplePosition(GameManager.manager.player.transform.position, out hit, 10f, 1))

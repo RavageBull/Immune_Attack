@@ -112,7 +112,7 @@ public class NatKillerCell : MonoBehaviour
         
 
 
-        yield return new WaitForSeconds(patrolCooldown);
+        yield return new WaitForSeconds(Random.Range(patrolCooldown - 1, patrolCooldown + 1));
         Debug.Log("Patrol Attempt");
         canPatrol = true;
     }

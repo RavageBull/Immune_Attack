@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     public Image fill;
 
     public Image ammo;
-    public Transform ammoLoc;
+    //public Transform ammoLoc;
     public Image ammoIcon;
     public List<Image> ammoList = new List<Image>();
 
@@ -79,14 +79,14 @@ public class UIManager : MonoBehaviour
         {
             player = GameManager.manager.player;
 
-            for (int i = 0; i < player.GetComponent<PlayerShoot>().bulletsMag; i++)
+            /*for (int i = 0; i < player.GetComponent<PlayerShoot>().bulletsMag; i++)
             {
                 ammoList.Add(Instantiate(ammoIcon));
 
                 ammoList[i].transform.SetParent(ammoLoc.transform);
 
                 ammoList[i].transform.position = new Vector3(ammoLoc.transform.position.x + 30 * i, ammoLoc.transform.position.y, ammoLoc.transform.position.z);
-            }
+            }*/
 
             UpdateHealth();
             UpdateAmmo();

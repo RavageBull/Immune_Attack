@@ -14,7 +14,10 @@ public class WinRoom : MonoBehaviour
             Destroy(GameManager.manager.sound);
         }
 
-        StartCoroutine("ToTitle");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        //StartCoroutine("ToTitle");
     }
 
     IEnumerator ToTitle()

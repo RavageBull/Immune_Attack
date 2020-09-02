@@ -40,7 +40,7 @@ public class BrainAttacks : MonoBehaviour
         StartCoroutine(Strafe());
 
         stats = GetComponent<Stats>();
-        stats.maxHealth = 750;
+        stats.maxHealth = 1000;
         stats.health = stats.maxHealth;
         stats.damage = 10;
 

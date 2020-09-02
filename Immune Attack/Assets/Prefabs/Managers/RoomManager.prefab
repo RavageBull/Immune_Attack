@@ -48,18 +48,8 @@ MonoBehaviour:
   enemyList: []
   playerSpawn: {fileID: 874928981194719678}
   portalDoor: {fileID: 4858150434718044700}
---- !u!114 &8707068004687917017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4858150434718044700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba44424be65f2124688843dfc5fd8591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  portalSound: {fileID: 8318841625312645104, guid: c2072f4fc3f53234eaa2bfd3bceee911,
+    type: 3}
 --- !u!65 &4344953024883334587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73,6 +63,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8707068004687917017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858150434718044700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba44424be65f2124688843dfc5fd8591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7996488020462904014
 GameObject:
   m_ObjectHideFlags: 0

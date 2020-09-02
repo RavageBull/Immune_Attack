@@ -294,7 +294,7 @@ public class BladderAttacks : MonoBehaviour
     /// <summary>
     /// Raycast Bouncing stuff
     /// </summary>
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {      
         Handles.color = Color.red;
         Handles.ArrowHandleCap(0, lazerStart.transform.position + lazerStart.transform.forward * 0.25f, lazerStart.transform.rotation, 0.5f, EventType.Repaint);
@@ -302,7 +302,7 @@ public class BladderAttacks : MonoBehaviour
         Gizmos.DrawWireSphere(lazerStart.transform.position, 0.25f);
 
         DrawPredictedReflectionPattern(lazerStart.transform.position + lazerStart.transform.forward * 0.75f, lazerStart.transform.forward, maxReflectionCount);
-    }
+    }*/
 
 
     private void DrawPredictedReflectionPattern(Vector3  position, Vector3 direction, int reflectionsRemaining)

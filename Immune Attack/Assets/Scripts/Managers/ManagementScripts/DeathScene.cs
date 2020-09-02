@@ -8,10 +8,16 @@ public class DeathScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(GameManager.manager.player);
-        Destroy(GameManager.manager.sound);
+        if (GameManager.manager != null)
+        {
+            Destroy(GameManager.manager.player);
+            Destroy(GameManager.manager.sound);
+        }
+        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
-        StartCoroutine("Restart");
+        //StartCoroutine("Restart");
     }
 
     IEnumerator Restart()

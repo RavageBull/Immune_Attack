@@ -43,7 +43,7 @@ public class PlayerShoot : MonoBehaviour
         _AudioSource = GetComponent<AudioSource>();
 
         rechargeDelay = 0.5f;
-        rechargeTime = 0.5f;
+        rechargeTime = 0.3f;
     }
 
 

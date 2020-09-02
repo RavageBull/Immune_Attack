@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1605009213906633227}
   - component: {fileID: 1605009213906633226}
-  - component: {fileID: 1605009213906633228}
   - component: {fileID: 2366914993245457040}
   - component: {fileID: 1605009213906633230}
   - component: {fileID: 4710136925295565174}
   - component: {fileID: 1605009213906633224}
   - component: {fileID: 3410512912392324023}
   - component: {fileID: 2330479663932626352}
+  - component: {fileID: 7219075881586851755}
   m_Layer: 0
   m_Name: RedBloodCell
   m_TagString: Enemy
@@ -88,19 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1605009213906633228
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605009213906633333}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2366914993245457040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,3 +266,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &7219075881586851755
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605009213906633333}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}

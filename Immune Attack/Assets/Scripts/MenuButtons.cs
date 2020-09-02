@@ -18,4 +18,14 @@ public class MenuButtons : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ToStart()
+    {
+        SceneManager.LoadScene("StartRoom");
+    }
+
+    public void ToTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
 }

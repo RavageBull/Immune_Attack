@@ -14,6 +14,8 @@ public class RoomManager : MonoBehaviour
     public delegate void RoomSpawnDelegate(GameObject room);
     public static RoomSpawnDelegate RoomSpawn;
 
+    [SerializeField] GameObject portalSound;
+
     private void OnEnable()
     {
         Enemy.EnemyDeath += EnemyUpdate;
@@ -64,5 +66,7 @@ public class RoomManager : MonoBehaviour
     void SpawnPortal()
     {
         portalDoor.SetActive(true);
+        GameObject obj = Instantiate(portalSound, portalDoor.transform.position, Quaternion.identity);
+        Destroy(obj, 1);
     }
 }
