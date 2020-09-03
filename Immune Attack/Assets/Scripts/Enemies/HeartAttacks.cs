@@ -6,6 +6,7 @@ public class HeartAttacks : MonoBehaviour
 {
     public int projectileQuantity;
     public int projectileQuantity2;
+    public int projectileQuantity3;
 
     public GameObject projectile;
     public GameObject projectile2;
@@ -122,11 +123,11 @@ public class HeartAttacks : MonoBehaviour
 
             //Shoots horizontally at 3 differnet heights;
             //Do this whole attack at random heights X times
-            float angleStep = 360f / projectileQuantity;
+            float angleStep = 360f / projectileQuantity3;
 
             angle = 0f;
 
-            for (int i = 0; i <= projectileQuantity - 1; i++)
+            for (int i = 0; i <= projectileQuantity3 - 1; i++)
             {
                 float projectileX = startPointH.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
                 //float projectileY = newStartpoint.y + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
