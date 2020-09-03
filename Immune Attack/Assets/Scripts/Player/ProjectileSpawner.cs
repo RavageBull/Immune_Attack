@@ -35,7 +35,7 @@ public class ProjectileSpawner : MonoBehaviour
             //Debug.Log("i is" + i);
 
             var projectileSpot = Instantiate(proj, projLocation2, Quaternion.identity);
-            Destroy(projectileSpot.gameObject, 4);
+            Destroy(projectileSpot.gameObject, 6);
             yield return new WaitForSeconds(0.1f);
         }
         

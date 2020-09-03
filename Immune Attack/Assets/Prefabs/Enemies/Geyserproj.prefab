@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d712c4d5d4fea54986c894bb7e718ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 3
   player1: {fileID: 0}
   projectileMoveSpeed: 0
 --- !u!212 &9190226961188025589
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 905b71766a5417745a388606fc1cb0d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 586d19a65318591418a33a06fd319d89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

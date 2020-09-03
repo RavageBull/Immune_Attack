@@ -68,7 +68,7 @@ public class BladderAttacks : MonoBehaviour
 
         //Stats
         stats = GetComponent<Stats>();
-        stats.maxHealth = 750;
+        stats.maxHealth = 1200;
         stats.health = stats.maxHealth;
         stats.damage = 10;
 

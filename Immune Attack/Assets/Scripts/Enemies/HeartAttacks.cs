@@ -34,7 +34,7 @@ public class HeartAttacks : MonoBehaviour
     void Start()
     {
         stats = GetComponent<Stats>();
-        stats.maxHealth = 750;
+        stats.maxHealth = 1400;
         stats.health = stats.maxHealth;
         stats.damage = 10;
 
@@ -73,6 +73,8 @@ public class HeartAttacks : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
+
+            StartCoroutine(ProjectileRingSpinningC());
             /*int height = Random.Range(1,4);
             FloatingOrbs();
 
