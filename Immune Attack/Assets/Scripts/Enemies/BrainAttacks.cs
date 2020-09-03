@@ -40,7 +40,7 @@ public class BrainAttacks : MonoBehaviour
         StartCoroutine(Strafe());
 
         stats = GetComponent<Stats>();
-        stats.maxHealth = 1500;
+        stats.maxHealth = 1250;
         stats.health = stats.maxHealth;
         stats.damage = 10;
 
@@ -59,7 +59,7 @@ public class BrainAttacks : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            ProjectileRingHorizontal();
+            //ProjectileRingHorizontal();
         }
     }
 
