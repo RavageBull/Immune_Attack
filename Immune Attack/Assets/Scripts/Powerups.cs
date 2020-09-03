@@ -194,7 +194,7 @@ public class Powerups : MonoBehaviour
 
     void Regen()
     {
-        stats1.stats.regen += 5;
+        stats1.stats.regen += 10;
         stats1.StopCoroutine("Regen");
         stats1.StartCoroutine("Regen");
     }
@@ -206,7 +206,7 @@ public class Powerups : MonoBehaviour
 
     void DamageUp()
     {
-        stats3.gunATK += 10;
+        stats3.gunATK += 5;
     }
 }
 

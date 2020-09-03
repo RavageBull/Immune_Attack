@@ -150,7 +150,7 @@ public class BladderAttacks : MonoBehaviour
             int index = Random.Range(0, beatAttack.Count);
             beatAttack[index]();
 
-            Debug.Log(index);
+            //Debug.Log(index);
         }
     }
 
@@ -286,7 +286,7 @@ public class BladderAttacks : MonoBehaviour
 
        
         strafeDir++;
-        Debug.Log("strafeDir is" + strafeDir);
+        //Debug.Log("strafeDir is" + strafeDir);
         StartCoroutine(Strafe());
     }
 

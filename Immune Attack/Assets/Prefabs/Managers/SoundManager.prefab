@@ -46,7 +46,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -143,3 +143,4 @@ MonoBehaviour:
   startLoop: {fileID: 8300000, guid: 17fad48aa77b53a488be898103984fad, type: 3}
   mainLoop: {fileID: 8300000, guid: a2061c719e635f446b9271b517759c87, type: 3}
   bossMusic: {fileID: 8300000, guid: b93e4b27b5a04524a9a4f6d41e579998, type: 3}
+  bossDeath: {fileID: 8300000, guid: 190c2516a80f2af43ac8b13df2178d84, type: 3}

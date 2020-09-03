@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
             roomIndex[i] = roomIndex[randomIndex];
             roomIndex[randomIndex] = temp;
 
-            Debug.Log(roomIndex[i]);
+            //Debug.Log(roomIndex[i]);
         }
     }
 
@@ -212,12 +212,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(inSound.gameObject);
-        }
-
-        //if it is the boss room, play the start song again
-        if (SceneManager.GetActiveScene().name == "TestScene 2")
-        {
-            sound.GetComponent<SoundManager>().PlayStart();
         }
     }
 

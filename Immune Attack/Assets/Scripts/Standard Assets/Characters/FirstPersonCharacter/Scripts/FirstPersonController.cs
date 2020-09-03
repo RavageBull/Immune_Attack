@@ -50,7 +50,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         float jumpTimer;
         float jumpTimerCap;
 
-        bool footstep;
+        float footstepTimer;
         float footstepCooldown;
 
         // Use this for initialization
@@ -71,7 +71,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             jumpTimerCap = 0.2f;
 
-            footstep = true;
+            footstepCooldown = 0.2f;
         }
 
 
@@ -119,6 +119,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            footstepTimer += Time.deltaTime;
         }
 
 
@@ -168,10 +170,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 jumpCount++;
 
                 //if the player is already off the ground and jumps for the first time, the jump is counted as a second/double jump;
-                if (jumpCount == 1 && !m_CharacterController.isGrounded)
+                /*if (jumpCount == 1 && !m_CharacterController.isGrounded)
                 {
                     jumpCount++;
-                }
+                }*/
             }
 
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
@@ -211,10 +213,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void PlayFootStepAudio()
         {
-            if (footstep)
+            if (footstepTimer > footstepCooldown)
             {
-                footstep = false;
-                StartCoroutine("FootstepCD");
+                footstepTimer = 0;
 
                 if (!m_CharacterController.isGrounded)
                 {
@@ -229,15 +230,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_FootstepSounds[n] = m_FootstepSounds[0];
                 m_FootstepSounds[0] = m_AudioSource.clip;
             }
-
-
-            
-        }
-
-        IEnumerator FootstepCD()
-        {
-            yield return new WaitForSeconds(0.2f);
-            footstep = true;
         }
 
 

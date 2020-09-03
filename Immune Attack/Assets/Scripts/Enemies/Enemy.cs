@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         stats.health -= dmg;
-        Debug.Log("Enemy took " + dmg + " damage");
+        //Debug.Log("Enemy took " + dmg + " damage");
 
         if (GetComponent<Boss>())
         {

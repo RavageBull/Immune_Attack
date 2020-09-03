@@ -41,7 +41,7 @@ public class BladderFloor : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Trigger entered");
+        //Debug.Log("Trigger entered");
         if (canHurt == true && other.gameObject.GetComponent<Player>())
         {
             other.gameObject.GetComponent<Player>().TakeDamage(damage);

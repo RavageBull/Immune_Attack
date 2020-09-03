@@ -42,8 +42,8 @@ public class PlayerShoot : MonoBehaviour
         currentBullets = bulletsMag;
         _AudioSource = GetComponent<AudioSource>();
 
-        rechargeDelay = 0.5f;
-        rechargeTime = 0.3f;
+        rechargeDelay = 0.25f;
+        rechargeTime = 0.25f;
     }
 
 
@@ -90,7 +90,7 @@ public class PlayerShoot : MonoBehaviour
 
         if (Physics.Raycast(startingshootPoint.position, startingshootPoint.transform.forward, out hit, gunRange))
         {
-            Debug.Log(hit.transform.name + " was hit!");
+            //Debug.Log(hit.transform.name + " was hit!");
 
             GameObject particle = Instantiate(spark, hit.point, Quaternion.identity);
             Destroy(particle, 0.5f);

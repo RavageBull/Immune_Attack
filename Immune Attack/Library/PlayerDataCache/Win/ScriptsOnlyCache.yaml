@@ -30,8 +30,6 @@ ScriptsOnlyBuild:
     - Stats
     - UIManager
     - UnityStandardAssets.Characters.FirstPerson.FirstPersonController
-    - UnityStandardAssets.Characters.FirstPerson.HeadBob
-    - UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController
     - WhiteCell
     - WinRoom
     NavMeshComponents.dll:
@@ -332,7 +330,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11100}
     - Class: 114
+      Script: {instanceID: 11108}
+    - Class: 114
       Script: {instanceID: 11186}
+    - Class: 114
+      Script: {instanceID: 12074}
     - Class: 114
       Script: {instanceID: 13036}
     - Class: 114
@@ -633,13 +635,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11672}
     - Class: 114
-      Script: {instanceID: 11710}
-    - Class: 114
       Script: {instanceID: 12412}
     - Class: 114
       Script: {instanceID: 12528}
-    - Class: 114
-      Script: {instanceID: 12552}
     - Class: 114
       Script: {instanceID: 12732}
     - Class: 114
@@ -659,8 +657,6 @@ ScriptsOnlyBuild:
     - Class: 128
       Script: {instanceID: 0}
     - Class: 135
-      Script: {instanceID: 0}
-    - Class: 136
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
@@ -1437,7 +1433,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10366}
     - Class: 114
+      Script: {instanceID: 11108}
+    - Class: 114
       Script: {instanceID: 11186}
+    - Class: 114
+      Script: {instanceID: 12074}
     - Class: 114
       Script: {instanceID: 12540}
     - Class: 114
@@ -1471,7 +1471,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 61272c94b1a4bf596ef34504644e27ea
+      Hash: 697be6e46cef1e8ea312b55ede8082d9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HeartAttacks
@@ -1483,7 +1483,7 @@ ScriptsOnlyBuild:
     className: ColorGrading
   - hash:
       serializedVersion: 2
-      Hash: 3b4b4d14987d28e072f5fae888620f1d
+      Hash: cf0b2fbfee9b82fb547acbe76322904c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SoundManager
@@ -1939,7 +1939,7 @@ ScriptsOnlyBuild:
     className: ActivateTrigger
   - hash:
       serializedVersion: 2
-      Hash: bd3cd6a2d61e8069b20b12efbbd06350
+      Hash: 340b6e93c1605b1875623e0583dc659d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -2191,7 +2191,7 @@ ScriptsOnlyBuild:
     className: TargetFieldOfView
   - hash:
       serializedVersion: 2
-      Hash: cbddab83fd698c2524b3b7eb0dfde8ab
+      Hash: 02de003d4b31e0ca542035ff824ad377
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoomManager

@@ -11,20 +11,21 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip startLoop = null;
     [SerializeField] AudioClip mainLoop = null;
     [SerializeField] AudioClip bossMusic = null;
+    [SerializeField] AudioClip bossDeath = null;
 
     public delegate void SoundSpawnDelegate(GameObject sound);
     public static SoundSpawnDelegate SoundSpawn;
 
     private void OnEnable()
     {
-        Boss.BossAppear += BossMusic;
         SceneManager.sceneLoaded += NewScene;
+        Enemy.BossDeath += BossDeathSound;
     }
 
     private void OnDisable()
     {
-        Boss.BossAppear -= BossMusic;
         SceneManager.sceneLoaded -= NewScene;
+        Enemy.BossDeath -= BossDeathSound;
     }
 
     void Awake()
@@ -35,14 +36,21 @@ public class SoundManager : MonoBehaviour
 
     void NewScene(Scene scene, LoadSceneMode mode)
     {
+        source.loop = true;
+
         if (CheckIfBoss())
         {
-            StopCoroutine("SongEnd");
+            StopAllCoroutines();
             source.Stop();
             source.clip = bossMusic;
             source.Play();
         }
-        else if (source.clip == bossMusic)
+        else if (source.clip != startLoop && source.clip != mainLoop)
+        {
+            Debug.Log(source.clip.name);
+            PlayStart();
+        }
+        else if (!source.isPlaying)
         {
             PlayStart();
         }
@@ -66,18 +74,13 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         SoundSpawn(gameObject);
-
-        if (source.isPlaying == false)
-        {
-            PlayStart();
-        }
     }
 
     public void PlayStart()
     {
         if (source != null)
         {
-            StopCoroutine("SongEnd");
+            StopAllCoroutines();
 
             if (source.isPlaying)
             {
@@ -102,12 +105,13 @@ public class SoundManager : MonoBehaviour
     {
         source.clip = mainLoop;
         source.Play();
-        source.loop = true;
     }
 
-    void BossMusic(string name)
+    void BossDeathSound()
     {
-
+        source.clip = bossDeath;
+        source.Play();
+        source.loop = false;
     }
 
 }
