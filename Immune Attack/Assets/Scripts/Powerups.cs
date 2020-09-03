@@ -170,7 +170,7 @@ public class Powerups : MonoBehaviour
  
     public void Health()
     {
-        stats1.stats.health = Mathf.Clamp(stats1.stats.health += 50, 0, 100);
+        stats1.stats.health = Mathf.Clamp(stats1.stats.health += 25, 0, 100);
         HealthUpdate();
     }
 

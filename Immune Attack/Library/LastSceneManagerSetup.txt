@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/StartRoom.unity
+- path: Assets/Scenes/BrainBoss.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

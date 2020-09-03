@@ -25,6 +25,8 @@ public class MonsterSpawner : MonoBehaviour
         unityGameObjects.Add(mon3);
         unityGameObjects.Add(mon4);
         unityGameObjects.Add(mon5);
+        unityGameObjects.Add(mon6);
+
 
 
         StartCoroutine(OrbSpawner());
@@ -47,7 +49,7 @@ public class MonsterSpawner : MonoBehaviour
             proj = unityGameObjects[index];
 
             Vector3 projLocation = transform.position + perpDir * i;
-            Vector3 projLocation2 = transform.position + perpDir * i + new Vector3(Random.Range(0,10), Random.Range(0, 10), Random.Range(0, 10));
+            Vector3 projLocation2 = transform.position + perpDir * i + new Vector3(Random.Range(0,10), 0, Random.Range(0, 10));
             //Debug.Log("Location is" + projLocation2)
             //Debug.Log("i is" + i);
 
