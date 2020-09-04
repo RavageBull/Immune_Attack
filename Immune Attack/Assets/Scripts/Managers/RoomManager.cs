@@ -54,13 +54,17 @@ public class RoomManager : MonoBehaviour
     //triggers this when an enemy death event happens
     void EnemyUpdate(GameObject enemy)
     {
-        enemyList.Remove(enemy);
-        Destroy(enemy);
-
-        if (enemyList.Count <= 0)
+        if (enemyList.Count > 0)
         {
-            SpawnPortal();
+            enemyList.Remove(enemy);
+            Destroy(enemy);
+
+            if (enemyList.Count <= 0)
+            {
+                SpawnPortal();
+            }
         }
+        
     }
 
     void SpawnPortal()

@@ -206,7 +206,7 @@ public class Powerups : MonoBehaviour
 
     void DamageUp()
     {
-        stats3.gunATK += 5;
+        stats3.gunATK += 3;
     }
 }
 
