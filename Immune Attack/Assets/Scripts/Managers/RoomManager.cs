@@ -54,10 +54,11 @@ public class RoomManager : MonoBehaviour
     //triggers this when an enemy death event happens
     void EnemyUpdate(GameObject enemy)
     {
+        Destroy(enemy);
+
         if (enemyList.Count > 0)
         {
             enemyList.Remove(enemy);
-            Destroy(enemy);
 
             if (enemyList.Count <= 0)
             {
